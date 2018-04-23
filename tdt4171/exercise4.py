@@ -10,7 +10,7 @@ from matplotlib import cm
 
 def load_data(filename, x_dim, y_dim, augment):
     data = []
-    with open(filename, 'rb') as csvfile:
+    with open(filename, 'r') as csvfile:
         linereader = csv.reader(csvfile, delimiter='\t')
         for line in linereader:
             data.append(list(map(float, line)))
@@ -239,8 +239,5 @@ def main():
     task2()
 
 
-
-
-
-
 main()
+
