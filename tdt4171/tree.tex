@@ -1,0 +1,10 @@
+\begin{tikzpicture}[every node/.style = {shape=rectangle, rounded corners,
+		draw, align=center, top color=white, bottom color=blue!20},
+level 1/.style={sibling distance=20em},
+level 2/.style={sibling distance=70em},
+level 3/.style={sibling distance=40em},
+level 4/.style={sibling distance=20em},
+level 5/.style={sibling distance=10em},
+level 6/.style={sibling distance=5em}]
+	\node {0}child { node {(1)} } child { node {4}  child { node {2}   child { node {1}child { node {(1)} }child { node {(2)} }}   child { node {1}child { node {(2)} }child { node {(1)} }}}  child { node {5}   child { node {1}    child { node {2}child { node {(1)} }child { node {(2)} }}    child { node {2}child { node {(2)} }child { node {(1)} }}}   child { node {3}    child { node {1}     child { node {2}child { node {(1)} }child { node {(2)} }}     child { node {2}child { node {(2)} }child { node {(1)} }}}    child { node {1}child { node {(2)} }     child { node {2}child { node {(2)} }child { node {(1)} }}}}}};
+\end{tikzpicture}

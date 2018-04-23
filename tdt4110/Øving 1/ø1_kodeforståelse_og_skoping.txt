@@ -1,0 +1,30 @@
+a) Dette blir skrevet ut til skjermen:
+
+	i main : 7 3
+	---> i swap : 3 7
+	i main : 7 3
+	---> i printglobals : 5 8
+	i main : 7 3
+
+b) Main() definerer lokale x og y verdier, så print
+vil gi ut de verdiene når det utføres der.
+	(i main : 7 3) 
+
+Swap(x,y)  henter x og y verdiene fra main().
+I swap byttes x og y lokalt,
+slik at når print utføres der vil det se ut som at x
+og y har byttet plass, sammenlignet med main().
+	(---> i swap : 3 7)
+
+Swap(x,y) endrer ikke variablene i main() og derfor vil
+print i main() gi samme som tidligere
+	(i main : 7 3)
+
+Printglobals() er en del av main, men den tar ikke
+variablene derfra. Derfor vil den bruke de globale variablene
+definert i starten av programmet. 
+	(---> i printglobals : 5 8)
+
+Printglobals() gjør heller ikke noe med main-variablene så
+x og y der vil forbli uendret. 
+	(i main : 7 3)

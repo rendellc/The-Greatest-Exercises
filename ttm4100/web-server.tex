@@ -1,0 +1,30 @@
+\documentclass{article}
+    \usepackage[margin=0.8in]{geometry}
+    \usepackage[parfill]{parskip}
+    \usepackage[utf8]{inputenc}
+    \usepackage{graphicx}
+    \usepackage{subcaption}
+    \usepackage{siunitx}
+
+
+\begin{document}
+Lab 2 \\
+Rendell Cale, \today 
+
+\paragraph{Screenshots}
+Viewing the web page on a tablet while running the server on the computer in the background. 
+\begin{figure}[h]
+    \centering
+    \begin{minipage}{.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth, angle=-90]{web-server-found.jpg}
+        \captionof{figure}{Accessing HelloWorld.html (which exists)}
+    \end{minipage}%
+    \begin{minipage}{.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth, angle=-90]{web-server-notfound.jpg}
+        \captionof{figure}{Accessing non-existing file}
+    \end{minipage}
+\end{figure}
+
+\end{document}

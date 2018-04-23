@@ -1,0 +1,155 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>oving8</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-03-08"><meta name="DC.source" content="oving8.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput">clc;
+<span class="comment">% --- constants ---</span>
+g = 9.81; <span class="comment">% gravitational acc.</span>
+z0 = 3;     <span class="comment">% meters above ground</span>
+u2 = 20.4;  <span class="comment">% exit velocity</span>
+anglesDeg = 0:5:70;
+dt = 0.01;
+
+
+<span class="comment">% calculations</span>
+angles = deg2rad(anglesDeg);
+x = @(t, theta) u2.*cos(theta).*t;
+z = @(t, theta) z0 + u2.*sin(theta).*t - 0.5*g.*t.^2;
+
+<span class="comment">% collide with water time</span>
+t_collide = fsolve(@(t) z(t, angles), repmat(5, size(angles))); <span class="comment">% find zero of all z-functons</span>
+
+<span class="comment">% maximum distance is at theta=45</span>
+x_max = x(t_collide(anglesDeg==45), angles(anglesDeg==45));
+
+
+<span class="comment">% plotting</span>
+figure;
+hold <span class="string">on</span>;
+<span class="keyword">for</span> i = 1:size(angles, 2)
+    xs = x(0:dt:t_collide(i), angles(i));
+    zs = z(0:dt:t_collide(i), angles(i));
+
+    plot(xs, zs);
+    t_collide(i);
+<span class="keyword">end</span>
+plot(x_max, 0, <span class="string">'ro'</span>);
+xlabel(<span class="string">'Horistontal avstand (m)'</span>);
+ylabel(<span class="string">'H&oslash;yde  (m.o.h)'</span>);
+title(<span class="string">'Brannb&aring;ts rekkevidde'</span>);
+legend(<span class="string">'\theta = '</span> + string(anglesDeg), <span class="string">'Maks avstand'</span>);
+</pre><pre class="codeoutput">
+Equation solved.
+
+fsolve completed because the vector of function values is near zero
+as measured by the default value of the function tolerance, and
+the problem appears regular as measured by the gradient.
+
+
+
+</pre><img vspace="5" hspace="5" src="oving8_01.png" style="width:560px;height:420px;" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+clc;
+% REPLACE_WITH_DASH_DASH- constants REPLACE_WITH_DASH_DASH-
+g = 9.81; % gravitational acc.
+z0 = 3;     % meters above ground
+u2 = 20.4;  % exit velocity
+anglesDeg = 0:5:70;
+dt = 0.01;
+
+
+% calculations
+angles = deg2rad(anglesDeg);
+x = @(t, theta) u2.*cos(theta).*t;
+z = @(t, theta) z0 + u2.*sin(theta).*t - 0.5*g.*t.^2;
+
+% collide with water time
+t_collide = fsolve(@(t) z(t, angles), repmat(5, size(angles))); % find zero of all z-functons
+
+% maximum distance is at theta=45
+x_max = x(t_collide(anglesDeg==45), angles(anglesDeg==45));
+
+
+% plotting
+figure;
+hold on;
+for i = 1:size(angles, 2)
+    xs = x(0:dt:t_collide(i), angles(i));
+    zs = z(0:dt:t_collide(i), angles(i));
+    
+    plot(xs, zs);
+    t_collide(i);
+end
+plot(x_max, 0, 'ro'); 
+xlabel('Horistontal avstand (m)');
+ylabel('Høyde  (m.o.h)');
+title('Brannbåts rekkevidde');
+legend('\theta = ' + string(anglesDeg), 'Maks avstand');
+
+
+##### SOURCE END #####
+--></body></html>

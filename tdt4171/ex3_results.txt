@@ -1,0 +1,9 @@
+-----Tree statistics with random importance-----
+	Times run: 10000
+	Average tree size (biggest/smallest): 275.64 (667.00/9.00)
+	Size std dev: 103.34
+	Accuracy avg (best/worst): 0.78 (1.00/0.36)
+	Accuracy std dev: 0.11
+-----Tree statistics with information gain importance-----
+	Tree size: 31
+	Accuracy avg: 0.78

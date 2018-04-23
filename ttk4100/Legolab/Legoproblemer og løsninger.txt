@@ -1,0 +1,16 @@
+Løsninger på diverse problemer:
+
+• Ikke kontakt med NXT når man skal oppdatere driver: 
+	o Sjekk under enhetsbehandling at driveren fungerer. Det skal dukke opp en egen LEGO-enhet
+	o Hvis den ikke er der, installer NXT driver fra http://www.lego.com/en-us/mindstorms/downloads
+	o Sjekk nå at enheten dukker opp
+	o Kjør firmware update i Matlab
+	o Last over et program
+
+• Om forrige instruks ikke fungerer
+	o Fjern evt. installerte lego-drivere
+	o Prøv driver fra: http://www.robotc.net/download/lego/ eller last ned hele NXT softwaren.
+
+• Når man oppdaterer firmware på noen Pcer i Matlab så havner NXTen i evig klikke-modus. Løsningen på dette ser ut til å være å gå inn i enhetsbehandleren (device manager) og manuelt oppdatere driveren som heter noe sånt som «Bossa (...)» under COM-porter, til Lego NXT Firmware Update Driver. Merk: Etter dette er utført må man først oppdatere firmware i Lego-software før man får kontakt med den i Matlab. Etter det er gjort, kan man oppdatere firmware i Matlab igjen :) Tungvint? Neeida :P
+
+• Det hender at det dukker opp en feilmelding på LCD-skjermen til NXT-brikka etter å ha lastet over et Simulink-program. Typisk noe sånt som «file not found», eller at man får et valg om å kjøre programmet manuelt. Dette ser ut til å skyldes at man bruker NXT med firmware fra Lego-softwaren. Denne burde oppdateres med firmware fra Matlab/Simulink. Oppdater firmware fra annen fungerende maskin om gruppen har problemer på egen.

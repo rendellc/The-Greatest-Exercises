@@ -1,0 +1,34 @@
+# SSL Record Types
+## Listing
+69	2.110770	10.24.33.248	23.13.248.68	TLSv1.2	252	Client Hello
+71	2.132230	23.13.248.68	10.24.33.248	TLSv1.2	1514	Server Hello
+73	2.132233	23.13.248.68	10.24.33.248	TLSv1.2	860	Certificate, Server Key Exchange, Server Hello Done
+75	2.133861	10.24.33.248	23.13.248.68	TLSv1.2	180	Client Key Exchange, Change Cipher Spec, Hello Request, Hello Request
+78	2.140763	10.24.33.248	23.13.248.68	TLSv1.2	1246	Application Data
+81	2.152910	23.13.248.68	10.24.33.248	TLSv1.2	296	New Session Ticket, Change Cipher Spec, Encrypted Handshake Message
+
+## Sizes
+Content type, size=1 byte
+Version, size=2 byte
+Length, size=2 byte
+
+# Client Hello
+content type value is 0x16 = 22
+
+* public-key algorithm: RSA
+* symmetric key algorithm: AES
+* hash algorithm: SHA
+
+# Client Key Exchange
+Public key length: 65 bytes
+
+# Application Data
+Encryption method:
+	RSA encryption
+
+Do the records include a MAC:
+	maybe?
+
+Does Wireshark distinguish between data and MAC?
+	no
+

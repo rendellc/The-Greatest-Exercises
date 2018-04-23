@@ -1,0 +1,6 @@
+MA0301 Elementær Diskret Matematikk
+MA3301 Beregnings- og kompleksitetsteori
+TDT4102 C++
+TDT4110 Informasjonsteknologi Grunnkurs
+TMA4100 Matematikk 1
+TMA4105 Matematikk 2

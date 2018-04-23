@@ -1,0 +1,24 @@
+Dette er en test for aa sjekke om python greier aa lese denne filen. 
+Python maa fjerne alle spesialtegn, og konvertere HELE TEKSTEN TIL LOWERCASE. 
+Det kan bli en stor utfordring, men jeg tror at det kommer til aa gaa bra. 
+Tallene skal ikke fjernes da saa de neste linje lister jeg opp en haug med tall som fremdeles
+kommer til aa vaere der etter programmet har kjoert. 
+1
+2
+3
+5
+
+5
+6
+4
+25y
+twh
+trgwe
+
+g
+5y
+rth
+ert
+h4q
+t4
+545

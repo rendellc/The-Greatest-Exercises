@@ -1,0 +1,350 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>o5</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-10-09"><meta name="DC.source" content="o5.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Problem 1</a></li><li><a href="#2">Problem 2</a></li><li><a href="#3">Problem 3</a></li><li><a href="#4">Problem 3 - new filter</a></li></ul></div><h2 id="1">Problem 1</h2><pre class="codeinput">close <span class="string">all</span>
+clear
+clc
+
+n = 0:50;
+N_FFT = power(2, 2*ceil(log2(size(n,2)))); <span class="comment">%2 times smallest power of 2 greater than size(n,2)</span>
+l = -n(end):n(end);
+as = [0.5 0.9 -0.9]';
+
+
+<span class="comment">%computation</span>
+<span class="comment">%x(n)</span>
+M = size(as,1);
+ns = repmat(n,M,1);
+xs = as.^n;
+
+<span class="comment">%rxx(l)</span>
+<span class="comment">%rxxs = abs(ifft(fft(xs, N_FFT,2).*fft(fliplr(xs), N_FFT,2)));</span>
+<span class="comment">%rxxs = conv2(fliplr(xs),xs,'same');</span>
+rxxs = zeros(M,size(l,2));
+<span class="keyword">for</span> i=1:M
+    rxxs(i,:) = conv(xs(i,:), fliplr(xs(i,:)));
+<span class="keyword">end</span>
+
+<span class="comment">%Sxx(w)</span>
+L = size(l,2)-1;
+Sxxs = abs(fftshift(fft(rxxs, N_FFT, 2))/L);
+
+<span class="comment">%plotting</span>
+as_legend = <span class="string">"a = "</span> + string(as');
+f = linspace(-0.5, 0.5, size(Sxxs,2));
+
+figure();
+plot(n, xs);
+title(<span class="string">"x[n]"</span>); xlabel(<span class="string">"n"</span>); ylabel(<span class="string">"x[n]"</span>); legend(as_legend);
+
+figure();
+plot(l, rxxs);
+title(<span class="string">"r_{xx}[l]"</span>); xlabel(<span class="string">"l"</span>); ylabel(<span class="string">"r_{xx}[l]"</span>); legend(as_legend);
+
+figure();
+plot(f, Sxxs);
+title(<span class="string">"S_{xx}(f)"</span>); xlabel(<span class="string">"f"</span>); ylabel(<span class="string">"S_{xx}"</span>); legend(as_legend);
+</pre><img vspace="5" hspace="5" src="o5_01.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="o5_02.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="o5_03.png" style="width:560px;height:420px;" alt=""> <h2 id="2">Problem 2</h2><pre class="codeinput">clear; close <span class="string">all</span>; clc;
+load(<span class="string">"Signals.mat"</span>);
+
+n = 1:size(x,2);
+
+
+figure();
+subplot(2,1,1);
+plot(n,x); title(<span class="string">"x[n]"</span>); ylabel(<span class="string">"x"</span>); xlabel(<span class="string">"n"</span>);
+subplot(2,1,2);
+plot(n,y); title(<span class="string">"y[n]"</span>); ylabel(<span class="string">"y"</span>); xlabel(<span class="string">"n"</span>);
+
+l = (-size(x,2)+1):(size(x,2)-1);
+rxy = xcorr(x,y);
+rxy_conv = conv(x,fliplr(y));
+
+figure();
+subplot(2,1,1);
+stem(l,rxy); title(<span class="string">"r_{xy}[l] from xcorr"</span>); ylabel(<span class="string">"r_{xy}"</span>); xlabel(<span class="string">"l"</span>);
+subplot(2,1,2);
+stem(l, rxy_conv); title(<span class="string">"r_{xy}[l] from conv"</span>); ylabel(<span class="string">"r_{xy}"</span>); xlabel(<span class="string">"l"</span>);
+
+[m, i] = max(rxy);
+D = -l(i) <span class="comment">% index of maximum</span>
+</pre><pre class="codeoutput">
+D =
+
+   150
+
+</pre><img vspace="5" hspace="5" src="o5_04.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="o5_05.png" style="width:560px;height:420px;" alt=""> <h2 id="3">Problem 3</h2><pre class="codeinput">clear; close <span class="string">all</span>; clc;
+filename = <span class="string">"piano.wav"</span>;
+[x, Fs] = audioread(filename{1});
+
+Rs = [11025, 22050, 33075];
+alphas = [0.1 0.5 1];
+
+<span class="keyword">for</span> R=Rs
+   <span class="keyword">for</span> alpha=alphas
+       figure();
+       B = zeros(1,R+1);
+       B(1) = 1; B(end) = alpha;
+       A = 1;
+
+       [H,T] = impz(B,A, 2*R);
+       subplot(2,1,1);
+       stem(T,H);
+       title(<span class="string">"Imp \alpha = "</span> + string(alpha) + <span class="string">" and R = "</span> + string(R));
+       xlabel(<span class="string">"n"</span>); ylabel(<span class="string">"h[n]"</span>);
+
+       [H,W] = freqz(B, A);
+       subplot(2,1,2);
+       log_H = 10*log10(abs(H));
+       plot(W,log_H);
+       title(<span class="string">"Freq \alpha = "</span> + string(alpha) + <span class="string">" and R = "</span> + string(R));
+       xticks([0 pi/4 pi/2 3*pi/4 pi 5*pi/4 3*pi/2 7*pi/4 2*pi]);
+       xticklabels({<span class="string">'0'</span> <span class="string">'\pi/4'</span> <span class="string">'\pi/2'</span> <span class="string">'3\pi/4'</span> <span class="string">'\pi'</span> <span class="string">'5\pi/4'</span> <span class="string">'3\pi/2'</span> <span class="string">'7\pi/4'</span> <span class="string">'2\pi'</span>});
+       xlim([0 pi]);    xlabel(<span class="string">"\omega"</span>);
+       ylim([floor(min(log_H))-1, ceil(max(log_H))+1]);   ylabel(<span class="string">"H[\omega] (dB)"</span>);
+
+       <span class="comment">%disp("Filtered sound: alpha=" + string(alpha) + "R=" + string(R));</span>
+       <span class="comment">%y = filter(B,A,x);</span>
+       <span class="comment">%soundsc(y,Fs);</span>
+       <span class="comment">%input('---press enter to continue---', 's');</span>
+   <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="o5_06.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="o5_07.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="o5_08.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="o5_09.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="o5_10.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="o5_11.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="o5_12.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="o5_13.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="o5_14.png" style="width:560px;height:420px;" alt=""> <h2 id="4">Problem 3 - new filter</h2><pre class="codeinput">clear; close <span class="string">all</span>; clc;
+filename = <span class="string">"piano.wav"</span>;
+[x, Fs] = audioread(filename{1});
+
+R=5000; alpha = 0.4; N=5;
+
+figure();
+B = zeros(1,N*R); A = zeros(1,R);
+
+B(1) = 1; B(end) = -alpha^N;
+A(1) = 1; A(end) = -alpha;
+
+[H,T] = impz(B,A);
+subplot(2,1,1);
+plot(T,H);
+title(<span class="string">"Imp \alpha = "</span> + string(alpha) + <span class="string">", R = "</span> + string(R)+ <span class="string">" and N = "</span> + string(N));
+xlabel(<span class="string">"n"</span>); ylabel(<span class="string">"h[n]"</span>);
+
+[H,W] = freqz(B, A);
+subplot(2,1,2);
+log_H = 10*log10(abs(H));
+plot(W,log_H);
+title(<span class="string">"Freq \alpha = "</span> + string(alpha) + <span class="string">", R = "</span> + string(R) + <span class="string">" and N = "</span> + string(N));
+xticks([0 pi/4 pi/2 3*pi/4 pi 5*pi/4 3*pi/2 7*pi/4 2*pi]);
+xticklabels({<span class="string">'0'</span> <span class="string">'\pi/4'</span> <span class="string">'\pi/2'</span> <span class="string">'3\pi/4'</span> <span class="string">'\pi'</span> <span class="string">'5\pi/4'</span> <span class="string">'3\pi/2'</span> <span class="string">'7\pi/4'</span> <span class="string">'2\pi'</span>});
+xlim([0 pi]);    xlabel(<span class="string">"\omega"</span>);
+ylim([floor(min(log_H))-1, ceil(max(log_H))+1]);   ylabel(<span class="string">"H[\omega] (dB)"</span>);
+
+<span class="comment">%y = filter(B,A,x);</span>
+</pre><img vspace="5" hspace="5" src="o5_15.png" style="width:560px;height:420px;" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Problem 1
+close all
+clear
+clc
+
+n = 0:50;
+N_FFT = power(2, 2*ceil(log2(size(n,2)))); %2 times smallest power of 2 greater than size(n,2)
+l = -n(end):n(end);
+as = [0.5 0.9 -0.9]';
+
+
+%computation
+%x(n)
+M = size(as,1);
+ns = repmat(n,M,1);
+xs = as.^n;
+
+%rxx(l)
+%rxxs = abs(ifft(fft(xs, N_FFT,2).*fft(fliplr(xs), N_FFT,2)));
+%rxxs = conv2(fliplr(xs),xs,'same'); 
+rxxs = zeros(M,size(l,2));
+for i=1:M
+    rxxs(i,:) = conv(xs(i,:), fliplr(xs(i,:)));
+end
+
+%Sxx(w)
+L = size(l,2)-1;
+Sxxs = abs(fftshift(fft(rxxs, N_FFT, 2))/L);
+
+%plotting
+as_legend = "a = " + string(as');
+f = linspace(-0.5, 0.5, size(Sxxs,2));
+
+figure();
+plot(n, xs);
+title("x[n]"); xlabel("n"); ylabel("x[n]"); legend(as_legend);
+
+figure();
+plot(l, rxxs);
+title("r_{xx}[l]"); xlabel("l"); ylabel("r_{xx}[l]"); legend(as_legend);
+
+figure();
+plot(f, Sxxs);
+title("S_{xx}(f)"); xlabel("f"); ylabel("S_{xx}"); legend(as_legend);
+
+%% Problem 2
+clear; close all; clc;
+load("Signals.mat");
+
+n = 1:size(x,2);
+
+
+figure();
+subplot(2,1,1); 
+plot(n,x); title("x[n]"); ylabel("x"); xlabel("n");
+subplot(2,1,2); 
+plot(n,y); title("y[n]"); ylabel("y"); xlabel("n");
+
+l = (-size(x,2)+1):(size(x,2)-1);
+rxy = xcorr(x,y);
+rxy_conv = conv(x,fliplr(y));
+
+figure();
+subplot(2,1,1); 
+stem(l,rxy); title("r_{xy}[l] from xcorr"); ylabel("r_{xy}"); xlabel("l");
+subplot(2,1,2); 
+stem(l, rxy_conv); title("r_{xy}[l] from conv"); ylabel("r_{xy}"); xlabel("l");
+
+[m, i] = max(rxy);
+D = -l(i) % index of maximum
+
+
+%% Problem 3
+clear; close all; clc;
+filename = "piano.wav";
+[x, Fs] = audioread(filename{1});
+
+Rs = [11025, 22050, 33075];
+alphas = [0.1 0.5 1];
+
+for R=Rs
+   for alpha=alphas
+       figure();
+       B = zeros(1,R+1);
+       B(1) = 1; B(end) = alpha;
+       A = 1;
+       
+       [H,T] = impz(B,A, 2*R);
+       subplot(2,1,1);
+       stem(T,H);
+       title("Imp \alpha = " + string(alpha) + " and R = " + string(R));
+       xlabel("n"); ylabel("h[n]");
+       
+       [H,W] = freqz(B, A);
+       subplot(2,1,2);
+       log_H = 10*log10(abs(H));
+       plot(W,log_H);
+       title("Freq \alpha = " + string(alpha) + " and R = " + string(R));
+       xticks([0 pi/4 pi/2 3*pi/4 pi 5*pi/4 3*pi/2 7*pi/4 2*pi]);
+       xticklabels({'0' '\pi/4' '\pi/2' '3\pi/4' '\pi' '5\pi/4' '3\pi/2' '7\pi/4' '2\pi'});
+       xlim([0 pi]);    xlabel("\omega");
+       ylim([floor(min(log_H))-1, ceil(max(log_H))+1]);   ylabel("H[\omega] (dB)");
+       
+       %disp("Filtered sound: alpha=" + string(alpha) + "R=" + string(R));
+       %y = filter(B,A,x);
+       %soundsc(y,Fs);
+       %input('REPLACE_WITH_DASH_DASH-press enter to continueREPLACE_WITH_DASH_DASH-', 's');
+   end
+end
+
+%% Problem 3 - new filter
+clear; close all; clc;
+filename = "piano.wav";
+[x, Fs] = audioread(filename{1});
+
+R=5000; alpha = 0.4; N=5;
+
+figure();
+B = zeros(1,N*R); A = zeros(1,R);
+
+B(1) = 1; B(end) = -alpha^N;
+A(1) = 1; A(end) = -alpha;
+
+[H,T] = impz(B,A);
+subplot(2,1,1);
+plot(T,H); 
+title("Imp \alpha = " + string(alpha) + ", R = " + string(R)+ " and N = " + string(N));
+xlabel("n"); ylabel("h[n]");
+
+[H,W] = freqz(B, A);
+subplot(2,1,2);
+log_H = 10*log10(abs(H));
+plot(W,log_H);
+title("Freq \alpha = " + string(alpha) + ", R = " + string(R) + " and N = " + string(N));
+xticks([0 pi/4 pi/2 3*pi/4 pi 5*pi/4 3*pi/2 7*pi/4 2*pi]);
+xticklabels({'0' '\pi/4' '\pi/2' '3\pi/4' '\pi' '5\pi/4' '3\pi/2' '7\pi/4' '2\pi'});
+xlim([0 pi]);    xlabel("\omega");
+ylim([floor(min(log_H))-1, ceil(max(log_H))+1]);   ylabel("H[\omega] (dB)");
+
+%y = filter(B,A,x);
+
+##### SOURCE END #####
+--></body></html>

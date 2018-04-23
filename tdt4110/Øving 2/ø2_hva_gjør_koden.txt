@@ -1,0 +1,35 @@
+a)
+y og x er globale variabler. 
+
+b) 
+Feil i input-funksjonen. ' og " sammen gir ikke en string.
+input vil danne en string så for å gjøre om det til et tallformat
+vi bruke int() eller float(). 
+z = x // y må venstrestilles.
+
+c)
+a: 6
+b: 3
+
+"Forklaring
+3<2 eller ikke mindre enn 3%2 (1 altså) er utsagnet som testes
+3<2 er ikke sant. 3<1 er heller ikke sant. Går til else delen av
+if-statementet. 
+a blir a*b=2*3=6 og b forblir 3
+
+d)
+func1(a)
+- tar inn a og returnerer en tilfeldig rekke med tall mellom 0
+og 10 som er a tall lang. (tallene kan repiteres)
+- denne rekken heter x
+
+func2(x)
+- sorterer tallene i x
+
+func1(a) ville jeg kalt rng(a) (random number generator). 
+Det er ikke helt nøyaktig men gir en god nok beskrivelse. 
+
+func2(x) ville jeg kalt sort(x) fordi den sorterer x
+
+"x" ville jeg kalt "rekke" for å gjøre det veldig tydlig
+
