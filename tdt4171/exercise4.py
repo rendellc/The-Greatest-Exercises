@@ -8,25 +8,6 @@ import os
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 
-def load_data(filename, x_dim, y_dim, augment):
-    data = []
-    with open(filename, 'r') as csvfile:
-        linereader = csv.reader(csvfile, delimiter='\t')
-        for line in linereader:
-            data.append(list(map(float, line)))
-
-    N = len(data)
-    data = np.array(data)
-
-    x = data[:,:x_dim]
-    y = data[:,x_dim:(x_dim + y_dim)]
-
-    if augment:
-        ones = np.matlib.repmat(1,N,1)
-        x = np.hstack((ones, x))
-
-    return x, y
-
 def sigmoid(w, x):
     return 1.0/(1.0 + np.exp(-np.dot(w,x)))
 
@@ -56,6 +37,106 @@ def loss_derivative_i(w,xn,yn,i):
     sig = sigmoid(w,xn)
     return (sig - yn)*xn[i]*np.exp(np.dot(-w,xn))*(sig**2)
 
+
+
+# ------------ Training ------------------
+#
+def BatchGradientDescent(training_data, rate, iteration_max, iteration_status_update, name):
+    x = training_data[0]
+    y = training_data[1]
+    N = len(x) 
+    d = len(x[0]) - 1 # x has dimension d+1
+    w = np.random.rand(d+1)
+
+    for t in range(iteration_max):
+        for i in range(d+1):
+            grad = numpy.zeros(d+1)
+            for n in range(N):
+                grad[i] += loss_derivative_i(w,x[n],y[n], i)
+            w[i] -= 1.0/N*rate*grad[i]
+        
+        if t in iteration_status_update:
+            correct, total = testClassificationData(w, x, y)
+            error = float(total - correct)/float(total)
+            print("Batch: {0}: rate {1}: iteration {2}: errors: {3}".format(name, rate, t, error))
+
+    return w
+                
+
+def StochasticGradientDescent(training_data, rate, iteration_max, iteration_status_update, name):
+    x = training_data[0]
+    y = training_data[1]
+    N = len(x) 
+    d = len(x[0]) - 1 # x has dimension d+1
+    w = np.random.rand(d+1)
+
+    for t in range(iteration_max):
+        chosen_index = random.randint(0,N-1)
+        x_star = x[chosen_index]
+        y_star = y[chosen_index]
+        for i in range(d+1):
+            grad = loss_derivative_i(w, x_star, y_star, i)
+            w[i] -= rate*grad
+
+        if t in iteration_status_update:
+            correct, total = testClassificationData(w, x, y)
+            error = float(total - correct)/float(total)
+            print("Stochastic: {0}: rate {1}: iteration {2}: errors: {3}".format(name, rate, t, error))
+
+    return w
+
+# ------------ Testing ------------------
+#
+def testClassificationData(w, x, y):
+    prediction = []
+    correct = 0
+    y = y.flatten()
+    for i, xn in enumerate(x):
+        p = classify(w,xn) # prediction
+        prediction.append(p)
+        if p == y[i]:
+            correct += 1
+
+    total = len(x)
+    return correct, total
+
+def testClassificationFile(w, test_filename):
+    x, y = load_data(test_filename, 2, 1, True)
+    return testClassificationData(w,x,y)
+    
+
+# ------------ Utility ------------------
+#
+def load_data(filename, x_dim, y_dim, augment):
+    data = []
+    with open(filename, 'r') as csvfile:
+        linereader = csv.reader(csvfile, delimiter='\t')
+        for line in linereader:
+            data.append(list(map(float, line)))
+
+    N = len(data)
+    data = np.array(data)
+
+    x = data[:,:x_dim]
+    y = data[:,x_dim:(x_dim + y_dim)]
+
+    if augment:
+        ones = np.matlib.repmat(1,N,1)
+        x = np.hstack((ones, x))
+
+    return x, y
+
+def evalTimeAndPrint(func, *args):
+    start = time.time()
+    retval = func(*args)
+    elapsed = time.time() - start
+    print("{0}: elapsed time: {1} secs".format(func.__name__, elapsed))
+    
+    return retval
+
+
+# ------------ TASK related ------------------
+#
 def task1():
     fig = plt.figure()
     ax = fig.gca(projection='3d')
@@ -109,41 +190,14 @@ def task1():
 
     plt.show()
 
-def evalTimeAndPrint(func, *args):
-    start = time.time()
-    retval = func(*args)
-    elapsed = time.time() - start
-    print("{0}: elapsed time: {1} secs".format(func.__name__, elapsed))
-    
-    return retval
 
-def testClassificationData(w, x, y):
-    prediction = []
-    correct = 0
-    y = y.flatten()
-    for i, xn in enumerate(x):
-        p = classify(w,xn) # prediction
-        prediction.append(p)
-        if p == y[i]:
-            correct += 1
-
-    total = len(x)
-    return correct, total
-
-def testClassificationFile(w, test_filename):
-    x, y = load_data(test_filename, 2, 1, True)
-    return testClassificationData(w,x,y)
-    
-
-def task2():
+def task2_trainAndClassyfyAll():
     data_dir = "ex4-data"
     rate_list = [0.01, 0.1, 1.0, 5.0, 10.0]
     iteration_list = [10, 20, 50, 100, 200, 500]
 
     data_sets = os.listdir(data_dir)
     iteration_max = max(iteration_list)
-
-
 
     # extract name of datasets
     training_sets = {}
@@ -188,56 +242,31 @@ def task2():
             print("\t\t{0}: Stochastic correctness: {1}".format(name, testClassificationFile(w_sgd,filename)))
 
 
+def task2_singleScatter():
+    # training
+    x,y = load_data("ex4-data/data_big_nonsep_train.csv", 2,1, True)
+    #StochasticGradientDescent([x,y], 2.0, 5000, list(range(0,5000,50)), "big-nonsep")
 
-def BatchGradientDescent(training_data, rate, iteration_max, iteration_status_update, name):
-    x = training_data[0]
-    y = training_data[1]
-    N = len(x) 
-    d = len(x[0]) - 1 # x has dimension d+1
-    w = np.random.rand(d+1)
+    print(y)
 
-    for t in range(iteration_max):
-        for i in range(d+1):
-            grad = numpy.zeros(d+1)
-            for n in range(N):
-                grad[i] += loss_derivative_i(w,x[n],y[n], i)
-            w[i] -= 1.0/N*rate*grad[i]
-        
-        if t in iteration_status_update:
-            correct, total = testClassificationData(w, x, y)
-            error = float(total - correct)/float(total)
-            print("Batch: {0}: rate {1}: iteration {2}: errors: {3}".format(name, rate, t, error))
+    # Fixing random state for reproducibility
+    colors=['r', 'b']
 
-    return w
-                
+    plt.scatter(x, y, alpha=0.5, color=colors[y])
 
-def StochasticGradientDescent(training_data, rate, iteration_max, iteration_status_update, name):
-    x = training_data[0]
-    y = training_data[1]
-    N = len(x) 
-    d = len(x[0]) - 1 # x has dimension d+1
-    w = np.random.rand(d+1)
+    print(y)
 
-    for t in range(iteration_max):
-        chosen_index = random.randint(0,N-1)
-        x_star = x[chosen_index]
-        y_star = y[chosen_index]
-        for i in range(d+1):
-            grad = loss_derivative_i(w, x_star, y_star, i)
-            w[i] -= rate*grad
+    plt.show()
 
-        if t in iteration_status_update:
-            correct, total = testClassificationData(w, x, y)
-            error = float(total - correct)/float(total)
-            print("Stochastic: {0}: rate {1}: iteration {2}: errors: {3}".format(name, rate, t, error))
-
-    return w
+    #x,y = load_data("ex4-data/data_big_nonsep_test.csv", 2,1, True)
 
 
-def main():
+
+
+
+
+if __name__=='__main__':
     #task1()
-    task2()
-
-
-main()
+    #task2_trainAndClassyfyAll()
+    task2_singleScatter()
 
