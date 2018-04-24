@@ -8,6 +8,11 @@ import os
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 
+
+
+
+# ------------ Perceptron releated ------------------
+#
 def sigmoid(w, x):
     return 1.0/(1.0 + np.exp(-np.dot(w,x)))
 
@@ -38,15 +43,14 @@ def loss_derivative_i(w,xn,yn,i):
     return (sig - yn)*xn[i]*np.exp(np.dot(-w,xn))*(sig**2)
 
 
-
-# ------------ Training ------------------
-#
 def BatchGradientDescent(training_data, rate, iteration_max, iteration_status_update, name):
     x = training_data[0]
     y = training_data[1]
     N = len(x) 
     d = len(x[0]) - 1 # x has dimension d+1
     w = np.random.rand(d+1)
+
+    start_time = time.time()
 
     for t in range(iteration_max):
         for i in range(d+1):
@@ -58,7 +62,8 @@ def BatchGradientDescent(training_data, rate, iteration_max, iteration_status_up
         if t in iteration_status_update:
             correct, total = testClassificationData(w, x, y)
             error = float(total - correct)/float(total)
-            print("Batch: {0}: rate {1}: iteration {2}: errors: {3}".format(name, rate, t, error))
+            time_since_start = time.time() - start_time
+            print("Batch: {0}: rate {1}: iteration {2}: errors: {3}: time: {4}".format(name, rate, t, error, time_since_start))
 
     return w
                 
@@ -69,6 +74,8 @@ def StochasticGradientDescent(training_data, rate, iteration_max, iteration_stat
     N = len(x) 
     d = len(x[0]) - 1 # x has dimension d+1
     w = np.random.rand(d+1)
+
+    start_time = time.time()
 
     for t in range(iteration_max):
         chosen_index = random.randint(0,N-1)
@@ -81,9 +88,17 @@ def StochasticGradientDescent(training_data, rate, iteration_max, iteration_stat
         if t in iteration_status_update:
             correct, total = testClassificationData(w, x, y)
             error = float(total - correct)/float(total)
-            print("Stochastic: {0}: rate {1}: iteration {2}: errors: {3}".format(name, rate, t, error))
+            time_since_start = time.time() - start_time
+            print("Stochastic: {0}: rate {1}: iteration {2}: errors: {3}: time: {4}".format(name, rate, t, error, time_since_start))
 
     return w
+#
+# ------------ Perceptron releated ------------------
+
+
+
+# NOTE: below this are functions which use the above functions to solve the different tasks
+
 
 # ------------ Testing ------------------
 #
@@ -103,7 +118,9 @@ def testClassificationData(w, x, y):
 def testClassificationFile(w, test_filename):
     x, y = load_data(test_filename, 2, 1, True)
     return testClassificationData(w,x,y)
-    
+#   
+# ------------ Testing ------------------
+
 
 # ------------ Utility ------------------
 #
@@ -126,13 +143,28 @@ def load_data(filename, x_dim, y_dim, augment):
 
     return x, y
 
-def evalTimeAndPrint(func, *args):
-    start = time.time()
-    retval = func(*args)
-    elapsed = time.time() - start
-    print("{0}: elapsed time: {1} secs".format(func.__name__, elapsed))
+def load_training_and_test_data(directory, datasetname, x_dim, y_dim, augment):
+    data_sets = os.listdir(directory)
+    trainfile = ""
+    testfile = ""
+    for dset in data_sets:
+        if datasetname in dset:
+            index = dset.find('_test.csv')
+            if index != -1:
+                print("Found test set: {0}".format(dset))
+                testfile = directory + "/" + dset
+                continue
+            index = dset.find('_train.csv')
+            if index != -1:
+                print("Found training set: {0}".format(dset))
+                trainfile = directory + "/" + dset
+                continue
+
+    return load_data(trainfile,x_dim,y_dim,True), load_data(testfile,x_dim,y_dim,True)
+#
+# ------------ Utility ------------------
+
     
-    return retval
 
 
 # ------------ TASK related ------------------
@@ -183,7 +215,7 @@ def task1():
         dots.append([wk[0], wk[1], loss_simple(wk)])
 
 
-    labels = map(str, ettas)
+    labels = list(map(str, ettas))
     for i, dot in enumerate(dots):
         ax.plot([dot[0]], [dot[1]], [dot[2]], 'ro')
         ax.text(dot[0], dot[1], dot[2], labels[i], size=20)
@@ -223,10 +255,10 @@ def task2_trainAndClassyfyAll():
         for name, filename in training_sets.items():
             x, y = load_data(filename, 2, 1, True)
             train_data = [x,y]
-            w_bgd = evalTimeAndPrint(BatchGradientDescent, train_data, rate, iteration_max, iteration_list, name)
-            print("\t->weights: {0}".format(w_bgd))
-            w_sgd = evalTimeAndPrint(StochasticGradientDescent, train_data, rate, iteration_max, iteration_list, name)
-            print("\t->weights: {0}".format(w_sgd))
+            w_bgd = BatchGradientDescent(train_data, rate, iteration_max, iteration_list, name)
+            print("Batch->weights: {0}".format(w_bgd))
+            w_sgd = StochasticGradientDescent(train_data, rate, iteration_max, iteration_list, name)
+            print("Stochastic->weights: {0}".format(w_sgd))
 
             w_bgd_dict[name] = w_bgd
             w_sgd_dict[name] = w_sgd
@@ -243,30 +275,77 @@ def task2_trainAndClassyfyAll():
 
 
 def task2_singleScatter():
+    x_train,y_train,x_test,y_test = load_training_and_test_data("ex4-data", "data_big_nonsep", 2,1,True)
+
     # training
-    x,y = load_data("ex4-data/data_big_nonsep_train.csv", 2,1, True)
-    #StochasticGradientDescent([x,y], 2.0, 5000, list(range(0,5000,50)), "big-nonsep")
+    w = StochasticGradientDescent([x_train,y_train], 2.0, 500, list(range(0,500,50)), datasetname)
 
-    print(y)
+    fig, ax = plt.subplots()
 
-    # Fixing random state for reproducibility
-    colors=['r', 'b']
+    ax.scatter(x_train[:,1], x_train[:,2], alpha=0.2, c=y.flatten(), cmap="plasma")
 
-    plt.scatter(x, y, alpha=0.5, color=colors[y])
+    # adding smallest line
+    x1_min = min(x_train[:,1])
+    x1_max = max(x_train[:,1])
+    x2_min_line = -w[0]/w[2] - w[1]/w[2]*x1_min
+    x2_max_line = -w[0]/w[2] - w[1]/w[2]*x1_max
 
-    print(y)
+    ax.plot([x1_min, x1_max], [x2_min_line, x2_max_line], c='g')
+
+    # plotting test data
+    x,y = load_data(testfile, 2,1, True)
+    ax.scatter(x_test[:,1], x_test[:,2], alpha=0.2, c=y.flatten(), cmap="flag")
+
+    plt.title("Dataset: {0}".format(datasetname))
+    plt.xlabel(r"$x_1$")
+    plt.ylabel(r"$x_2$")
 
     plt.show()
 
-    #x,y = load_data("ex4-data/data_big_nonsep_test.csv", 2,1, True)
+
+def task2_singleScatter():
+    x_train,y_train,x_test,y_test = load_training_and_test_data("ex4-data", "data_big_nonsep", 2,1,True)
+
+    fig, ax = plt.subplots()
+
+    # training
+    w = StochasticGradientDescent([x_train,y_train], 2.0, 500, list(range(0,500,50)), datasetname)
+
+    # best line
+    x1_min = min(x_train[:,1])
+    x1_max = max(x_train[:,1])
+    x2_min_line = -w[0]/w[2] - w[1]/w[2]*x1_min
+    x2_max_line = -w[0]/w[2] - w[1]/w[2]*x1_max
+
+    # plotting test data
+    ax.scatter(x_train[:,1], x_train[:,2], alpha=0.2, c=y.flatten(), cmap="plasma")
+    ax.plot([x1_min, x1_max], [x2_min_line, x2_max_line], c='g')
+    ax.scatter(x_test[:,1], x_test[:,2], alpha=0.2, c=y.flatten(), cmap="flag")
+    plt.title("Dataset: {0}".format(datasetname))
+    plt.xlabel(r"$x_1$")
+    plt.ylabel(r"$x_2$")
+
+    plt.show()
+
+def task2_iterations():
+    x,y = load_data("ex4-data/data_small_nonsep_train.csv", 2,1,True)
+    # dont save the weights, just need the print outs :)
+    StochasticGradientDescent([x,y], 1.0, 1000, list(range(0,1000,10)), "small_nonsep")
+
+def task2_iterations_plotting():
+    error = []
+    with open("iteration.txt", 'r') as f:
+        for line in f:
+            pass
 
 
-
-
-
+#
+# ------------ TASK related ------------------
 
 if __name__=='__main__':
     #task1()
     #task2_trainAndClassyfyAll()
-    task2_singleScatter()
+    #task2_singleScatter()
+    #task2_iterations() # write this to file: iteration.txt
+    task2_iterations_plotting() # reads from file: iteration.txt
 

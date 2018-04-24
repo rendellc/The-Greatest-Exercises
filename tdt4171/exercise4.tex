@@ -7,6 +7,7 @@
     \usepackage{amsmath}
     \usepackage{listings}
     \usepackage{color}
+    \usepackage{cleveref}
 
 
 % Letternumbering
@@ -73,6 +74,55 @@ Notice in the plot that there is quite a big difference between the different ch
 The function does decrease in the direction of $(w_1,w_2) = (\infty,-\infty)$, but is essentially constantly zero from quite early on. 
 
 Another interesting thing we can see from this plot is that for $\eta=0.0001$, the loss function is significantly larger. This is probably since the sequence converges slower for small values of $\eta$. 
+
+\section{}
+\subsection{Derivative formula}
+Using the chain rule, we find
+\begin{equation} 
+	\frac{\partial L_n}{\partial w_i} = (\sigma(w,x_n) - y_n) \frac{\partial \sigma(w,x_n)}{\partial w_i} \label{eq:partial_L_halway}
+\end{equation}
+
+Computing the derivative of $\sigma(w,x_n)$ gives
+\begin{align}
+	\frac{\partial \sigma(w,x_n)}{\partial w_i} &= \frac{\partial}{\partial w_i}\left( \frac{1}{1+e^{-w^Tx_n}} \right) \\
+	&= \frac{-1}{(1+e^{-w^T x_n})^2} \frac{\partial}{\partial w_i}(1 + e^{-w^Tx_n}) \\
+	&= \sigma(w,x_n)^2 x_i e^{-w^T x_n}
+\end{align}
+
+Using this in \cref{eq:partial_L_halway} gives the final formula which we'll use for the remainder of the task. 
+\begin{align}
+	\frac{\partial L_n}{\partial w_i} &= (\sigma(w,x_n) - y_n) \frac{\partial \sigma(w,x_n)}{\partial w_i}  \\
+	&= x_i (\sigma(w,x_n) - y_n) \sigma(w,x_n)^2 e^{-w^T x_n}
+\end{align} 
+
+\subsection{Experiments}
+\subsubsection{General results}
+
+
+\subsubsection{Scatter plot}
+I trained the perceptron on the big non-seperable dataset using Stochastic Gradient Descent. The following scatter plot shows the two classes of points and the line which attempts to divide them. 
+
+\begin{centering}
+\includegraphics[width=0.9\linewidth]{ex4_scatter_training.png}
+\end{centering}
+
+Using the same line on the test data yields the following plot.
+
+\begin{centering}
+\includegraphics[width=0.9\linewidth]{ex4_scatter_test.png}
+\end{centering}
+
+Combining both plots give the following.
+
+\begin{centering}
+\includegraphics[width=0.9\linewidth]{ex4_scatter_both.png}
+\end{centering}
+
+\subsubsection{Effects of iterations}
+The general effect that increasing the number of iterations is that the error goes down, but only to a certain point. For the seperable datasets it was quite easy to get the error down to 0, which makes sense, but for the non-seperable datasets the error will converge to something non-zero and bounce slightly up or down for each iteration. 
+
+To see this we will plot the error as a function of the number of iterations for the small non-seperable dataset. 
+
 
 
 
