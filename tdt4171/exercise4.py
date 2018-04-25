@@ -330,22 +330,42 @@ def task2_singleScatter():
 def task2_iterations():
     x,y = load_data("ex4-data/data_small_nonsep_train.csv", 2,1,True)
     # dont save the weights, just need the print outs :)
-    StochasticGradientDescent([x,y], 1.0, 1000, list(range(0,1000,10)), "small_nonsep")
+    BatchGradientDescent([x,y], 1.0, 1000, list(range(0,1000,10)), "small_nonsep")
 
 def task2_iterations_plotting():
     error = []
+    total = 0
     with open("iteration.txt", 'r') as f:
         for line in f:
-            pass
+            total += 1
+            
+            i = line.find("errors:")
+            if i == -1:
+                print("ERROR {0}".format(line))
+                raise
+            i += len("errors: ")
 
-
+            j = line.find(": time:")
+            if j == -1:
+                print("ERROR {0}".format(line))
+                raise
+            
+            error.append(float(line[i:j]))
+    
+    Ts = list(range(0,10*total, 10))
+    
+    plt.plot(Ts, error)
+    plt.xlabel("Iterations")
+    plt.ylabel("Error")
+    plt.title("Error for small nonseperable data over iterations")
+    plt.show()
 #
 # ------------ TASK related ------------------
 
 if __name__=='__main__':
     #task1()
-    #task2_trainAndClassyfyAll()
+    task2_trainAndClassyfyAll()
     #task2_singleScatter()
     #task2_iterations() # write this to file: iteration.txt
-    task2_iterations_plotting() # reads from file: iteration.txt
+    #task2_iterations_plotting() # reads from file: iteration.txt
 

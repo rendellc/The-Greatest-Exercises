@@ -9,365 +9,325 @@ Found test set: data_small_nonsep_test.csv
 -
 Start training on datasets for 500 iterations with learning rate 0.01
 -
-Batch: data_small_nonsep: rate 0.01: iteration 10: errors: 0.5
-Batch: data_small_nonsep: rate 0.01: iteration 20: errors: 0.5
-Batch: data_small_nonsep: rate 0.01: iteration 50: errors: 0.5
-Batch: data_small_nonsep: rate 0.01: iteration 100: errors: 0.5
-Batch: data_small_nonsep: rate 0.01: iteration 200: errors: 0.5
-BatchGradientDescent: elapsed time: 68.19195795059204 secs
-	->weights: [ 0.50152103  0.38860135 -0.09570613]
-Stochastic: data_small_nonsep: rate 0.01: iteration 10: errors: 0.36
-Stochastic: data_small_nonsep: rate 0.01: iteration 20: errors: 0.354
-Stochastic: data_small_nonsep: rate 0.01: iteration 50: errors: 0.346
-Stochastic: data_small_nonsep: rate 0.01: iteration 100: errors: 0.338
-Stochastic: data_small_nonsep: rate 0.01: iteration 200: errors: 0.3065
-StochasticGradientDescent: elapsed time: 0.11066365242004395 secs
-	->weights: [-0.02732756  0.940769   -0.0838255 ]
-Batch: data_big_separable: rate 0.01: iteration 10: errors: 0.4998
-Batch: data_big_separable: rate 0.01: iteration 20: errors: 0.4998
-Batch: data_big_separable: rate 0.01: iteration 50: errors: 0.4998
-Batch: data_big_separable: rate 0.01: iteration 100: errors: 0.4997
-Batch: data_big_separable: rate 0.01: iteration 200: errors: 0.4997
-BatchGradientDescent: elapsed time: 340.0214874744415 secs
-	->weights: [0.40490206 0.84558609 0.66747467]
-Stochastic: data_big_separable: rate 0.01: iteration 10: errors: 0.5
-Stochastic: data_big_separable: rate 0.01: iteration 20: errors: 0.5
-Stochastic: data_big_separable: rate 0.01: iteration 50: errors: 0.5
-Stochastic: data_big_separable: rate 0.01: iteration 100: errors: 0.5
-Stochastic: data_big_separable: rate 0.01: iteration 200: errors: 0.5
-StochasticGradientDescent: elapsed time: 0.3467705249786377 secs
-	->weights: [0.12457613 0.16127716 0.17138928]
-Batch: data_small_separable: rate 0.01: iteration 10: errors: 0.4925
-Batch: data_small_separable: rate 0.01: iteration 20: errors: 0.4915
-Batch: data_small_separable: rate 0.01: iteration 50: errors: 0.49
-Batch: data_small_separable: rate 0.01: iteration 100: errors: 0.4855
-Batch: data_small_separable: rate 0.01: iteration 200: errors: 0.4625
-BatchGradientDescent: elapsed time: 68.5946397781372 secs
-	->weights: [ 0.12156804  0.88337233 -0.06755729]
-Stochastic: data_small_separable: rate 0.01: iteration 10: errors: 0.5
-Stochastic: data_small_separable: rate 0.01: iteration 20: errors: 0.5
-Stochastic: data_small_separable: rate 0.01: iteration 50: errors: 0.5
-Stochastic: data_small_separable: rate 0.01: iteration 100: errors: 0.5
-Stochastic: data_small_separable: rate 0.01: iteration 200: errors: 0.5
-StochasticGradientDescent: elapsed time: 0.10071682929992676 secs
-	->weights: [0.69676438 0.29118844 0.59181048]
-Batch: data_big_nonsep: rate 0.01: iteration 10: errors: 0.5175
-Batch: data_big_nonsep: rate 0.01: iteration 20: errors: 0.5174
-Batch: data_big_nonsep: rate 0.01: iteration 50: errors: 0.5162
-Batch: data_big_nonsep: rate 0.01: iteration 100: errors: 0.5156
-Batch: data_big_nonsep: rate 0.01: iteration 200: errors: 0.5118
-BatchGradientDescent: elapsed time: 342.1370596885681 secs
-	->weights: [0.03629701 0.15072233 0.65338788]
-Stochastic: data_big_nonsep: rate 0.01: iteration 10: errors: 0.5003
-Stochastic: data_big_nonsep: rate 0.01: iteration 20: errors: 0.5003
-Stochastic: data_big_nonsep: rate 0.01: iteration 50: errors: 0.5002
-Stochastic: data_big_nonsep: rate 0.01: iteration 100: errors: 0.5002
-Stochastic: data_big_nonsep: rate 0.01: iteration 200: errors: 0.5001
-StochasticGradientDescent: elapsed time: 0.34517741203308105 secs
-	->weights: [0.70209482 0.2331578  0.28506113]
+Batch: data_small_separable: rate 0.01: iteration 10: errors: 0.5: time: 1.4464800357818604
+Batch: data_small_separable: rate 0.01: iteration 20: errors: 0.5: time: 2.7422375679016113
+Batch: data_small_separable: rate 0.01: iteration 50: errors: 0.5: time: 6.610943078994751
+Batch: data_small_separable: rate 0.01: iteration 100: errors: 0.5: time: 13.041166543960571
+Batch: data_small_separable: rate 0.01: iteration 200: errors: 0.5: time: 25.88910961151123
+Batch->weights: [0.25606208 0.36165663 0.4329563 ]
+Stochastic: data_small_separable: rate 0.01: iteration 10: errors: 0.5: time: 0.011994600296020508
+Stochastic: data_small_separable: rate 0.01: iteration 20: errors: 0.5: time: 0.023932218551635742
+Stochastic: data_small_separable: rate 0.01: iteration 50: errors: 0.5: time: 0.03721475601196289
+Stochastic: data_small_separable: rate 0.01: iteration 100: errors: 0.5: time: 0.051996469497680664
+Stochastic: data_small_separable: rate 0.01: iteration 200: errors: 0.5: time: 0.0703582763671875
+Stochastic->weights: [0.21064817 0.36713446 0.07090144]
+Batch: data_small_nonsep: rate 0.01: iteration 10: errors: 0.5: time: 1.4138641357421875
+Batch: data_small_nonsep: rate 0.01: iteration 20: errors: 0.5: time: 2.7016310691833496
+Batch: data_small_nonsep: rate 0.01: iteration 50: errors: 0.5: time: 6.548443555831909
+Batch: data_small_nonsep: rate 0.01: iteration 100: errors: 0.5: time: 12.959110498428345
+Batch: data_small_nonsep: rate 0.01: iteration 200: errors: 0.5: time: 25.81815528869629
+Batch->weights: [ 0.7087025   0.44849821 -0.08108558]
+Stochastic: data_small_nonsep: rate 0.01: iteration 10: errors: 0.4995: time: 0.01189422607421875
+Stochastic: data_small_nonsep: rate 0.01: iteration 20: errors: 0.4995: time: 0.023616552352905273
+Stochastic: data_small_nonsep: rate 0.01: iteration 50: errors: 0.499: time: 0.03676247596740723
+Stochastic: data_small_nonsep: rate 0.01: iteration 100: errors: 0.498: time: 0.051389217376708984
+Stochastic: data_small_nonsep: rate 0.01: iteration 200: errors: 0.497: time: 0.0696115493774414
+Stochastic->weights: [0.66138621 0.50790302 0.18899531]
+Batch: data_big_nonsep: rate 0.01: iteration 10: errors: 0.5008: time: 7.109456539154053
+Batch: data_big_nonsep: rate 0.01: iteration 20: errors: 0.5007: time: 13.550913333892822
+Batch: data_big_nonsep: rate 0.01: iteration 50: errors: 0.5006: time: 32.81634736061096
+Batch: data_big_nonsep: rate 0.01: iteration 100: errors: 0.5005: time: 64.914071559906
+Batch: data_big_nonsep: rate 0.01: iteration 200: errors: 0.5005: time: 128.9317169189453
+Batch->weights: [0.57188987 0.19402043 0.45784603]
+Stochastic: data_big_nonsep: rate 0.01: iteration 10: errors: 0.4924: time: 0.056285858154296875
+Stochastic: data_big_nonsep: rate 0.01: iteration 20: errors: 0.492: time: 0.11210751533508301
+Stochastic: data_big_nonsep: rate 0.01: iteration 50: errors: 0.4909: time: 0.17016148567199707
+Stochastic: data_big_nonsep: rate 0.01: iteration 100: errors: 0.4895: time: 0.2293539047241211
+Stochastic: data_big_nonsep: rate 0.01: iteration 200: errors: 0.4848: time: 0.2920546531677246
+Stochastic->weights: [0.36421281 0.46874299 0.24612809]
+Batch: data_big_separable: rate 0.01: iteration 10: errors: 0.4857: time: 7.116318941116333
+Batch: data_big_separable: rate 0.01: iteration 20: errors: 0.4853: time: 13.610799074172974
+Batch: data_big_separable: rate 0.01: iteration 50: errors: 0.4819: time: 32.913291692733765
+Batch: data_big_separable: rate 0.01: iteration 100: errors: 0.4745: time: 65.22262597084045
+Batch: data_big_separable: rate 0.01: iteration 200: errors: 0.4518: time: 129.3433916568756
+Batch->weights: [-0.09125807  0.8913486   0.10996904]
+Stochastic: data_big_separable: rate 0.01: iteration 10: errors: 0.5: time: 0.05658435821533203
+Stochastic: data_big_separable: rate 0.01: iteration 20: errors: 0.5: time: 0.11316704750061035
+Stochastic: data_big_separable: rate 0.01: iteration 50: errors: 0.5: time: 0.17847228050231934
+Stochastic: data_big_separable: rate 0.01: iteration 100: errors: 0.5: time: 0.23845601081848145
+Stochastic: data_big_separable: rate 0.01: iteration 200: errors: 0.5: time: 0.30093979835510254
+Stochastic->weights: [ 0.58642655  0.65578739 -0.10094837]
 -
 Start evaluating on datasets for 500 iterations with learning rate 0.01
 	data_small_separable
-		data_small_separable: Batch correctness: (139, 200)
-		data_small_separable: Stochastic correctness: (100, 200)
-	data_small_nonsep
-		data_small_nonsep: Batch correctness: (101, 200)
-		data_small_nonsep: Stochastic correctness: (155, 200)
+		data_small_separable: Batch correctness: (100, 200)
+		data_small_separable: Stochastic correctness: (102, 200)
 	data_big_separable
-		data_big_separable: Batch correctness: (500, 1000)
+		data_big_separable: Batch correctness: (744, 1000)
 		data_big_separable: Stochastic correctness: (500, 1000)
 	data_big_nonsep
-		data_big_nonsep: Batch correctness: (511, 1000)
-		data_big_nonsep: Stochastic correctness: (500, 1000)
+		data_big_nonsep: Batch correctness: (501, 1000)
+		data_big_nonsep: Stochastic correctness: (526, 1000)
+	data_small_nonsep
+		data_small_nonsep: Batch correctness: (100, 200)
+		data_small_nonsep: Stochastic correctness: (101, 200)
 -
 Start training on datasets for 500 iterations with learning rate 0.1
 -
-Batch: data_small_nonsep: rate 0.1: iteration 10: errors: 0.414
-Batch: data_small_nonsep: rate 0.1: iteration 20: errors: 0.401
-Batch: data_small_nonsep: rate 0.1: iteration 50: errors: 0.3515
-Batch: data_small_nonsep: rate 0.1: iteration 100: errors: 0.241
-Batch: data_small_nonsep: rate 0.1: iteration 200: errors: 0.18
-BatchGradientDescent: elapsed time: 68.69206428527832 secs
-	->weights: [-0.13840693  1.56222157 -0.59829387]
-Stochastic: data_small_nonsep: rate 0.1: iteration 10: errors: 0.455
-Stochastic: data_small_nonsep: rate 0.1: iteration 20: errors: 0.447
-Stochastic: data_small_nonsep: rate 0.1: iteration 50: errors: 0.4185
-Stochastic: data_small_nonsep: rate 0.1: iteration 100: errors: 0.359
-Stochastic: data_small_nonsep: rate 0.1: iteration 200: errors: 0.2385
-StochasticGradientDescent: elapsed time: 0.10303068161010742 secs
-	->weights: [-0.50889798  1.402005   -0.39758918]
-Batch: data_big_separable: rate 0.1: iteration 10: errors: 0.5
-Batch: data_big_separable: rate 0.1: iteration 20: errors: 0.4999
-Batch: data_big_separable: rate 0.1: iteration 50: errors: 0.4994
-Batch: data_big_separable: rate 0.1: iteration 100: errors: 0.3496
-Batch: data_big_separable: rate 0.1: iteration 200: errors: 0.0096
-BatchGradientDescent: elapsed time: 343.4594120979309 secs
-	->weights: [-1.28706517  1.06970811  0.0668623 ]
-Stochastic: data_big_separable: rate 0.1: iteration 10: errors: 0.5
-Stochastic: data_big_separable: rate 0.1: iteration 20: errors: 0.5
-Stochastic: data_big_separable: rate 0.1: iteration 50: errors: 0.5
-Stochastic: data_big_separable: rate 0.1: iteration 100: errors: 0.4982
-Stochastic: data_big_separable: rate 0.1: iteration 200: errors: 0.0248
-StochasticGradientDescent: elapsed time: 0.3477480411529541 secs
-	->weights: [-1.24417999  1.02640757  0.0609684 ]
-Batch: data_small_separable: rate 0.1: iteration 10: errors: 0.4305
-Batch: data_small_separable: rate 0.1: iteration 20: errors: 0.384
-Batch: data_small_separable: rate 0.1: iteration 50: errors: 0.1875
-Batch: data_small_separable: rate 0.1: iteration 100: errors: 0.0115
-Batch: data_small_separable: rate 0.1: iteration 200: errors: 0.001
-BatchGradientDescent: elapsed time: 68.33292007446289 secs
-	->weights: [-1.44012359  1.267848    0.02117254]
-Stochastic: data_small_separable: rate 0.1: iteration 10: errors: 0.447
-Stochastic: data_small_separable: rate 0.1: iteration 20: errors: 0.401
-Stochastic: data_small_separable: rate 0.1: iteration 50: errors: 0.132
-Stochastic: data_small_separable: rate 0.1: iteration 100: errors: 0.004
-Stochastic: data_small_separable: rate 0.1: iteration 200: errors: 0.001
-StochasticGradientDescent: elapsed time: 0.10179615020751953 secs
-	->weights: [-1.41108022  1.28346611  0.05300683]
-Batch: data_big_nonsep: rate 0.1: iteration 10: errors: 0.4763
-Batch: data_big_nonsep: rate 0.1: iteration 20: errors: 0.4724
-Batch: data_big_nonsep: rate 0.1: iteration 50: errors: 0.4563
-Batch: data_big_nonsep: rate 0.1: iteration 100: errors: 0.4144
-Batch: data_big_nonsep: rate 0.1: iteration 200: errors: 0.2457
-BatchGradientDescent: elapsed time: 340.5229775905609 secs
-	->weights: [-0.27764697  1.39095227 -0.41478915]
-Stochastic: data_big_nonsep: rate 0.1: iteration 10: errors: 0.5009
-Stochastic: data_big_nonsep: rate 0.1: iteration 20: errors: 0.5007
-Stochastic: data_big_nonsep: rate 0.1: iteration 50: errors: 0.4988
-Stochastic: data_big_nonsep: rate 0.1: iteration 100: errors: 0.4835
-Stochastic: data_big_nonsep: rate 0.1: iteration 200: errors: 0.2581
-StochasticGradientDescent: elapsed time: 0.3457009792327881 secs
-	->weights: [-0.1025948   1.27781333 -0.38226003]
+Batch: data_small_separable: rate 0.1: iteration 10: errors: 0.4985: time: 1.4178385734558105
+Batch: data_small_separable: rate 0.1: iteration 20: errors: 0.497: time: 2.699845790863037
+Batch: data_small_separable: rate 0.1: iteration 50: errors: 0.4355: time: 6.535192966461182
+Batch: data_small_separable: rate 0.1: iteration 100: errors: 0.025: time: 12.93220067024231
+Batch: data_small_separable: rate 0.1: iteration 200: errors: 0.0005: time: 25.84504795074463
+Batch->weights: [-1.48864504  0.89786664  0.17864502]
+Stochastic: data_small_separable: rate 0.1: iteration 10: errors: 0.5: time: 0.011991500854492188
+Stochastic: data_small_separable: rate 0.1: iteration 20: errors: 0.5: time: 0.023824214935302734
+Stochastic: data_small_separable: rate 0.1: iteration 50: errors: 0.5: time: 0.037096261978149414
+Stochastic: data_small_separable: rate 0.1: iteration 100: errors: 0.486: time: 0.051731109619140625
+Stochastic: data_small_separable: rate 0.1: iteration 200: errors: 0.0115: time: 0.07006096839904785
+Stochastic->weights: [-1.26365126  1.00589683  0.10310575]
+Batch: data_small_nonsep: rate 0.1: iteration 10: errors: 0.3595: time: 1.4066171646118164
+Batch: data_small_nonsep: rate 0.1: iteration 20: errors: 0.341: time: 2.6968469619750977
+Batch: data_small_nonsep: rate 0.1: iteration 50: errors: 0.261: time: 6.515306234359741
+Batch: data_small_nonsep: rate 0.1: iteration 100: errors: 0.1965: time: 12.929265260696411
+Batch: data_small_nonsep: rate 0.1: iteration 200: errors: 0.168: time: 25.659508228302002
+Batch->weights: [-0.11473535  1.60695443 -0.63996348]
+Stochastic: data_small_nonsep: rate 0.1: iteration 10: errors: 0.421: time: 0.012052297592163086
+Stochastic: data_small_nonsep: rate 0.1: iteration 20: errors: 0.4075: time: 0.023966312408447266
+Stochastic: data_small_nonsep: rate 0.1: iteration 50: errors: 0.367: time: 0.037387847900390625
+Stochastic: data_small_nonsep: rate 0.1: iteration 100: errors: 0.2885: time: 0.0520932674407959
+Stochastic: data_small_nonsep: rate 0.1: iteration 200: errors: 0.208: time: 0.07041740417480469
+Stochastic->weights: [-0.15037322  1.58759235 -0.39205563]
+Batch: data_big_nonsep: rate 0.1: iteration 10: errors: 0.5: time: 7.0790793895721436
+Batch: data_big_nonsep: rate 0.1: iteration 20: errors: 0.5: time: 13.513468742370605
+Batch: data_big_nonsep: rate 0.1: iteration 50: errors: 0.4985: time: 32.679399728775024
+Batch: data_big_nonsep: rate 0.1: iteration 100: errors: 0.3681: time: 64.6392650604248
+Batch: data_big_nonsep: rate 0.1: iteration 200: errors: 0.1866: time: 128.44268226623535
+Batch->weights: [-0.044978    1.36982032 -0.58350399]
+Stochastic: data_big_nonsep: rate 0.1: iteration 10: errors: 0.4971: time: 0.05635356903076172
+Stochastic: data_big_nonsep: rate 0.1: iteration 20: errors: 0.4965: time: 0.11328387260437012
+Stochastic: data_big_nonsep: rate 0.1: iteration 50: errors: 0.4886: time: 0.1718311309814453
+Stochastic: data_big_nonsep: rate 0.1: iteration 100: errors: 0.3495: time: 0.2321796417236328
+Stochastic: data_big_nonsep: rate 0.1: iteration 200: errors: 0.2356: time: 0.29535794258117676
+Stochastic->weights: [ 0.04441618  1.39661005 -0.67016979]
+Batch: data_big_separable: rate 0.1: iteration 10: errors: 0.4683: time: 7.096264839172363
+Batch: data_big_separable: rate 0.1: iteration 20: errors: 0.448: time: 13.585174322128296
+Batch: data_big_separable: rate 0.1: iteration 50: errors: 0.2941: time: 32.81080174446106
+Batch: data_big_separable: rate 0.1: iteration 100: errors: 0.0238: time: 64.88577938079834
+Batch: data_big_separable: rate 0.1: iteration 200: errors: 0.0011: time: 128.97839450836182
+Batch->weights: [-1.44435777  1.25066341  0.03009742]
+Stochastic: data_big_separable: rate 0.1: iteration 10: errors: 0.4997: time: 0.056684017181396484
+Stochastic: data_big_separable: rate 0.1: iteration 20: errors: 0.4987: time: 0.11296916007995605
+Stochastic: data_big_separable: rate 0.1: iteration 50: errors: 0.3452: time: 0.1705782413482666
+Stochastic: data_big_separable: rate 0.1: iteration 100: errors: 0.0321: time: 0.2304832935333252
+Stochastic: data_big_separable: rate 0.1: iteration 200: errors: 0.0021: time: 0.29393911361694336
+Stochastic->weights: [-1.4133653   0.95437924  0.17829833]
 -
 Start evaluating on datasets for 500 iterations with learning rate 0.1
 	data_small_separable
 		data_small_separable: Batch correctness: (200, 200)
 		data_small_separable: Stochastic correctness: (200, 200)
-	data_small_nonsep
-		data_small_nonsep: Batch correctness: (173, 200)
-		data_small_nonsep: Stochastic correctness: (169, 200)
 	data_big_separable
 		data_big_separable: Batch correctness: (1000, 1000)
 		data_big_separable: Stochastic correctness: (1000, 1000)
 	data_big_nonsep
-		data_big_nonsep: Batch correctness: (835, 1000)
-		data_big_nonsep: Stochastic correctness: (827, 1000)
+		data_big_nonsep: Batch correctness: (836, 1000)
+		data_big_nonsep: Stochastic correctness: (838, 1000)
+	data_small_nonsep
+		data_small_nonsep: Batch correctness: (172, 200)
+		data_small_nonsep: Stochastic correctness: (165, 200)
 -
 Start training on datasets for 500 iterations with learning rate 1.0
 -
-Batch: data_small_nonsep: rate 1.0: iteration 10: errors: 0.2865
-Batch: data_small_nonsep: rate 1.0: iteration 20: errors: 0.206
-Batch: data_small_nonsep: rate 1.0: iteration 50: errors: 0.17
-Batch: data_small_nonsep: rate 1.0: iteration 100: errors: 0.1665
-Batch: data_small_nonsep: rate 1.0: iteration 200: errors: 0.1625
-BatchGradientDescent: elapsed time: 64.48463439941406 secs
-	->weights: [ 0.13178975  3.11305739 -1.56431238]
-Stochastic: data_small_nonsep: rate 1.0: iteration 10: errors: 0.397
-Stochastic: data_small_nonsep: rate 1.0: iteration 20: errors: 0.2105
-Stochastic: data_small_nonsep: rate 1.0: iteration 50: errors: 0.236
-Stochastic: data_small_nonsep: rate 1.0: iteration 100: errors: 0.172
-Stochastic: data_small_nonsep: rate 1.0: iteration 200: errors: 0.1665
-StochasticGradientDescent: elapsed time: 0.09273505210876465 secs
-	->weights: [-0.56567294  3.86352771 -1.24845909]
-Batch: data_big_separable: rate 1.0: iteration 10: errors: 0.3019
-Batch: data_big_separable: rate 1.0: iteration 20: errors: 0.0096
-Batch: data_big_separable: rate 1.0: iteration 50: errors: 0.0
-Batch: data_big_separable: rate 1.0: iteration 100: errors: 0.0
-Batch: data_big_separable: rate 1.0: iteration 200: errors: 0.0
-BatchGradientDescent: elapsed time: 315.3136782646179 secs
-	->weights: [-3.18117196  1.8013352   0.22000674]
-Stochastic: data_big_separable: rate 1.0: iteration 10: errors: 0.4999
-Stochastic: data_big_separable: rate 1.0: iteration 20: errors: 0.2912
-Stochastic: data_big_separable: rate 1.0: iteration 50: errors: 0.0
-Stochastic: data_big_separable: rate 1.0: iteration 100: errors: 0.0
-Stochastic: data_big_separable: rate 1.0: iteration 200: errors: 0.0
-StochasticGradientDescent: elapsed time: 0.32990527153015137 secs
-	->weights: [-3.2319407   1.81000635  0.14109617]
-Batch: data_small_separable: rate 1.0: iteration 10: errors: 0.1365
-Batch: data_small_separable: rate 1.0: iteration 20: errors: 0.0015
-Batch: data_small_separable: rate 1.0: iteration 50: errors: 0.0
-Batch: data_small_separable: rate 1.0: iteration 100: errors: 0.0
-Batch: data_small_separable: rate 1.0: iteration 200: errors: 0.0
-BatchGradientDescent: elapsed time: 63.68070697784424 secs
-	->weights: [-3.2340434   1.6813858   0.27903575]
-Stochastic: data_small_separable: rate 1.0: iteration 10: errors: 0.1435
-Stochastic: data_small_separable: rate 1.0: iteration 20: errors: 0.0405
-Stochastic: data_small_separable: rate 1.0: iteration 50: errors: 0.008
-Stochastic: data_small_separable: rate 1.0: iteration 100: errors: 0.0005
-Stochastic: data_small_separable: rate 1.0: iteration 200: errors: 0.0005
-StochasticGradientDescent: elapsed time: 0.10158848762512207 secs
-	->weights: [-2.91875982  2.66036694 -0.18250658]
-Batch: data_big_nonsep: rate 1.0: iteration 10: errors: 0.2781
-Batch: data_big_nonsep: rate 1.0: iteration 20: errors: 0.183
-Batch: data_big_nonsep: rate 1.0: iteration 50: errors: 0.1653
-Batch: data_big_nonsep: rate 1.0: iteration 100: errors: 0.1647
-Batch: data_big_nonsep: rate 1.0: iteration 200: errors: 0.162
-BatchGradientDescent: elapsed time: 340.98228788375854 secs
-	->weights: [ 0.16972769  3.15431628 -1.6526798 ]
-Stochastic: data_big_nonsep: rate 1.0: iteration 10: errors: 0.3852
-Stochastic: data_big_nonsep: rate 1.0: iteration 20: errors: 0.1705
-Stochastic: data_big_nonsep: rate 1.0: iteration 50: errors: 0.3109
-Stochastic: data_big_nonsep: rate 1.0: iteration 100: errors: 0.163
-Stochastic: data_big_nonsep: rate 1.0: iteration 200: errors: 0.1766
-StochasticGradientDescent: elapsed time: 0.35379886627197266 secs
-	->weights: [ 0.15654617  3.67673675 -1.53229834]
+Batch: data_small_separable: rate 1.0: iteration 10: errors: 0.1615: time: 1.4278337955474854
+Batch: data_small_separable: rate 1.0: iteration 20: errors: 0.0015: time: 2.7324185371398926
+Batch: data_small_separable: rate 1.0: iteration 50: errors: 0.0: time: 6.59626841545105
+Batch: data_small_separable: rate 1.0: iteration 100: errors: 0.0: time: 13.035648107528687
+Batch: data_small_separable: rate 1.0: iteration 200: errors: 0.0: time: 25.914496183395386
+Batch->weights: [-3.15801308  1.90844998  0.16808479]
+Stochastic: data_small_separable: rate 1.0: iteration 10: errors: 0.472: time: 0.01198124885559082
+Stochastic: data_small_separable: rate 1.0: iteration 20: errors: 0.5: time: 0.023809194564819336
+Stochastic: data_small_separable: rate 1.0: iteration 50: errors: 0.0005: time: 0.03724217414855957
+Stochastic: data_small_separable: rate 1.0: iteration 100: errors: 0.0005: time: 0.0520780086517334
+Stochastic: data_small_separable: rate 1.0: iteration 200: errors: 0.0: time: 0.0705718994140625
+Stochastic->weights: [-2.99301499  2.25319996  0.02336697]
+Batch: data_small_nonsep: rate 1.0: iteration 10: errors: 0.24: time: 1.4243016242980957
+Batch: data_small_nonsep: rate 1.0: iteration 20: errors: 0.17: time: 2.720808267593384
+Batch: data_small_nonsep: rate 1.0: iteration 50: errors: 0.1645: time: 6.602675676345825
+Batch: data_small_nonsep: rate 1.0: iteration 100: errors: 0.1635: time: 13.07070779800415
+Batch: data_small_nonsep: rate 1.0: iteration 200: errors: 0.161: time: 25.965975999832153
+Batch->weights: [ 0.15065009  3.14611235 -1.59426272]
+Stochastic: data_small_nonsep: rate 1.0: iteration 10: errors: 0.247: time: 0.012037992477416992
+Stochastic: data_small_nonsep: rate 1.0: iteration 20: errors: 0.199: time: 0.02402496337890625
+Stochastic: data_small_nonsep: rate 1.0: iteration 50: errors: 0.264: time: 0.03741765022277832
+Stochastic: data_small_nonsep: rate 1.0: iteration 100: errors: 0.205: time: 0.05223822593688965
+Stochastic: data_small_nonsep: rate 1.0: iteration 200: errors: 0.1805: time: 0.07074356079101562
+Stochastic->weights: [ 0.06524868  3.52110455 -0.93339474]
+Batch: data_big_nonsep: rate 1.0: iteration 10: errors: 0.24: time: 7.147937774658203
+Batch: data_big_nonsep: rate 1.0: iteration 20: errors: 0.1924: time: 13.653970003128052
+Batch: data_big_nonsep: rate 1.0: iteration 50: errors: 0.1714: time: 33.21820259094238
+Batch: data_big_nonsep: rate 1.0: iteration 100: errors: 0.1668: time: 65.55181217193604
+Batch: data_big_nonsep: rate 1.0: iteration 200: errors: 0.1623: time: 130.13098859786987
+Batch->weights: [ 0.16075684  3.1359552  -1.63698211]
+Stochastic: data_big_nonsep: rate 1.0: iteration 10: errors: 0.446: time: 0.05687451362609863
+Stochastic: data_big_nonsep: rate 1.0: iteration 20: errors: 0.4211: time: 0.11389350891113281
+Stochastic: data_big_nonsep: rate 1.0: iteration 50: errors: 0.179: time: 0.1725904941558838
+Stochastic: data_big_nonsep: rate 1.0: iteration 100: errors: 0.1608: time: 0.25171709060668945
+Stochastic: data_big_nonsep: rate 1.0: iteration 200: errors: 0.1794: time: 0.31544947624206543
+Stochastic->weights: [ 0.01480181  3.44844052 -1.49497248]
+Batch: data_big_separable: rate 1.0: iteration 10: errors: 0.098: time: 7.261260986328125
+Batch: data_big_separable: rate 1.0: iteration 20: errors: 0.0076: time: 13.842451095581055
+Batch: data_big_separable: rate 1.0: iteration 50: errors: 0.0001: time: 33.25126647949219
+Batch: data_big_separable: rate 1.0: iteration 100: errors: 0.0: time: 65.57397770881653
+Batch: data_big_separable: rate 1.0: iteration 200: errors: 0.0: time: 130.1395766735077
+Batch->weights: [-3.13910969  1.93197593  0.15651029]
+Stochastic: data_big_separable: rate 1.0: iteration 10: errors: 0.5: time: 0.056990623474121094
+Stochastic: data_big_separable: rate 1.0: iteration 20: errors: 0.0904: time: 0.11411023139953613
+Stochastic: data_big_separable: rate 1.0: iteration 50: errors: 0.0: time: 0.1724097728729248
+Stochastic: data_big_separable: rate 1.0: iteration 100: errors: 0.0: time: 0.23288607597351074
+Stochastic: data_big_separable: rate 1.0: iteration 200: errors: 0.0: time: 0.29726409912109375
+Stochastic->weights: [-3.16680475  1.92786168  0.1519548 ]
 -
 Start evaluating on datasets for 500 iterations with learning rate 1.0
 	data_small_separable
 		data_small_separable: Batch correctness: (200, 200)
 		data_small_separable: Stochastic correctness: (200, 200)
-	data_small_nonsep
-		data_small_nonsep: Batch correctness: (171, 200)
-		data_small_nonsep: Stochastic correctness: (171, 200)
 	data_big_separable
 		data_big_separable: Batch correctness: (1000, 1000)
 		data_big_separable: Stochastic correctness: (1000, 1000)
 	data_big_nonsep
 		data_big_nonsep: Batch correctness: (837, 1000)
-		data_big_nonsep: Stochastic correctness: (830, 1000)
+		data_big_nonsep: Stochastic correctness: (835, 1000)
+	data_small_nonsep
+		data_small_nonsep: Batch correctness: (171, 200)
+		data_small_nonsep: Stochastic correctness: (158, 200)
 -
 Start training on datasets for 500 iterations with learning rate 5.0
 -
-Batch: data_small_nonsep: rate 5.0: iteration 10: errors: 0.1625
-Batch: data_small_nonsep: rate 5.0: iteration 20: errors: 0.162
-Batch: data_small_nonsep: rate 5.0: iteration 50: errors: 0.16
-Batch: data_small_nonsep: rate 5.0: iteration 100: errors: 0.161
-Batch: data_small_nonsep: rate 5.0: iteration 200: errors: 0.161
-BatchGradientDescent: elapsed time: 68.09680247306824 secs
-	->weights: [ 0.45084413  3.98634854 -2.2198855 ]
-Stochastic: data_small_nonsep: rate 5.0: iteration 10: errors: 0.4305
-Stochastic: data_small_nonsep: rate 5.0: iteration 20: errors: 0.1635
-Stochastic: data_small_nonsep: rate 5.0: iteration 50: errors: 0.256
-Stochastic: data_small_nonsep: rate 5.0: iteration 100: errors: 0.1805
-Stochastic: data_small_nonsep: rate 5.0: iteration 200: errors: 0.176
-StochasticGradientDescent: elapsed time: 0.10132431983947754 secs
-	->weights: [ 1.60716657  6.31642533 -3.48451247]
-Batch: data_big_separable: rate 5.0: iteration 10: errors: 0.0011
-Batch: data_big_separable: rate 5.0: iteration 20: errors: 0.0001
-Batch: data_big_separable: rate 5.0: iteration 50: errors: 0.0
-Batch: data_big_separable: rate 5.0: iteration 100: errors: 0.0
-Batch: data_big_separable: rate 5.0: iteration 200: errors: 0.0
-BatchGradientDescent: elapsed time: 340.5871250629425 secs
-	->weights: [-4.28986816  2.54168294  0.19039185]
-Stochastic: data_big_separable: rate 5.0: iteration 10: errors: 0.4195
-Stochastic: data_big_separable: rate 5.0: iteration 20: errors: 0.0
-Stochastic: data_big_separable: rate 5.0: iteration 50: errors: 0.0
-Stochastic: data_big_separable: rate 5.0: iteration 100: errors: 0.0
-Stochastic: data_big_separable: rate 5.0: iteration 200: errors: 0.0
-StochasticGradientDescent: elapsed time: 0.35892772674560547 secs
-	->weights: [-4.509227    2.21650169  0.37595431]
-Batch: data_small_separable: rate 5.0: iteration 10: errors: 0.0
-Batch: data_small_separable: rate 5.0: iteration 20: errors: 0.0
-Batch: data_small_separable: rate 5.0: iteration 50: errors: 0.0
-Batch: data_small_separable: rate 5.0: iteration 100: errors: 0.0
-Batch: data_small_separable: rate 5.0: iteration 200: errors: 0.0
-BatchGradientDescent: elapsed time: 67.58963394165039 secs
-	->weights: [-4.41129723  2.11943588  0.39303909]
-Stochastic: data_small_separable: rate 5.0: iteration 10: errors: 0.3555
-Stochastic: data_small_separable: rate 5.0: iteration 20: errors: 0.0005
-Stochastic: data_small_separable: rate 5.0: iteration 50: errors: 0.0
-Stochastic: data_small_separable: rate 5.0: iteration 100: errors: 0.0
-Stochastic: data_small_separable: rate 5.0: iteration 200: errors: 0.0
-StochasticGradientDescent: elapsed time: 0.10554027557373047 secs
-	->weights: [-4.45091673  2.32095462  0.38938135]
-Batch: data_big_nonsep: rate 5.0: iteration 10: errors: 0.1649
-Batch: data_big_nonsep: rate 5.0: iteration 20: errors: 0.1628
-Batch: data_big_nonsep: rate 5.0: iteration 50: errors: 0.16
-Batch: data_big_nonsep: rate 5.0: iteration 100: errors: 0.1585
-Batch: data_big_nonsep: rate 5.0: iteration 200: errors: 0.1578
-BatchGradientDescent: elapsed time: 337.64457273483276 secs
-	->weights: [ 0.48521705  4.08448828 -2.34331666]
-Stochastic: data_big_nonsep: rate 5.0: iteration 10: errors: 0.4049
-Stochastic: data_big_nonsep: rate 5.0: iteration 20: errors: 0.2493
-Stochastic: data_big_nonsep: rate 5.0: iteration 50: errors: 0.2638
-Stochastic: data_big_nonsep: rate 5.0: iteration 100: errors: 0.1609
-Stochastic: data_big_nonsep: rate 5.0: iteration 200: errors: 0.1873
-StochasticGradientDescent: elapsed time: 0.3514409065246582 secs
-	->weights: [ 1.60912377  5.65003823 -4.85750117]
+Batch: data_small_separable: rate 5.0: iteration 10: errors: 0.0025: time: 1.4214839935302734
+Batch: data_small_separable: rate 5.0: iteration 20: errors: 0.0005: time: 2.709468364715576
+Batch: data_small_separable: rate 5.0: iteration 50: errors: 0.0: time: 6.563403606414795
+Batch: data_small_separable: rate 5.0: iteration 100: errors: 0.0: time: 12.989150524139404
+Batch: data_small_separable: rate 5.0: iteration 200: errors: 0.0: time: 25.760957956314087
+Batch->weights: [-4.20860691e+00  2.93976179e+00 -2.26178129e-04]
+Stochastic: data_small_separable: rate 5.0: iteration 10: errors: 0.03: time: 0.012039422988891602
+Stochastic: data_small_separable: rate 5.0: iteration 20: errors: 0.001: time: 0.024051904678344727
+Stochastic: data_small_separable: rate 5.0: iteration 50: errors: 0.0005: time: 0.03747415542602539
+Stochastic: data_small_separable: rate 5.0: iteration 100: errors: 0.0005: time: 0.052359819412231445
+Stochastic: data_small_separable: rate 5.0: iteration 200: errors: 0.0005: time: 0.0709683895111084
+Stochastic->weights: [-4.08399311  4.06330325 -0.42264181]
+Batch: data_small_nonsep: rate 5.0: iteration 10: errors: 0.16: time: 1.4170610904693604
+Batch: data_small_nonsep: rate 5.0: iteration 20: errors: 0.161: time: 2.7172138690948486
+Batch: data_small_nonsep: rate 5.0: iteration 50: errors: 0.16: time: 6.566148042678833
+Batch: data_small_nonsep: rate 5.0: iteration 100: errors: 0.161: time: 12.957273721694946
+Batch: data_small_nonsep: rate 5.0: iteration 200: errors: 0.161: time: 25.768490076065063
+Batch->weights: [ 0.450928    3.98661161 -2.22007328]
+Stochastic: data_small_nonsep: rate 5.0: iteration 10: errors: 0.279: time: 0.012130022048950195
+Stochastic: data_small_nonsep: rate 5.0: iteration 20: errors: 0.1715: time: 0.024094104766845703
+Stochastic: data_small_nonsep: rate 5.0: iteration 50: errors: 0.169: time: 0.03755378723144531
+Stochastic: data_small_nonsep: rate 5.0: iteration 100: errors: 0.2495: time: 0.05242300033569336
+Stochastic: data_small_nonsep: rate 5.0: iteration 200: errors: 0.1765: time: 0.07098841667175293
+Stochastic->weights: [ 0.55958196  5.50873178 -2.87590545]
+Batch: data_big_nonsep: rate 5.0: iteration 10: errors: 0.1698: time: 7.12482213973999
+Batch: data_big_nonsep: rate 5.0: iteration 20: errors: 0.1649: time: 13.598061084747314
+Batch: data_big_nonsep: rate 5.0: iteration 50: errors: 0.1607: time: 32.93800711631775
+Batch: data_big_nonsep: rate 5.0: iteration 100: errors: 0.1585: time: 65.11953258514404
+Batch: data_big_nonsep: rate 5.0: iteration 200: errors: 0.1578: time: 129.4331715106964
+Batch->weights: [ 0.48456511  4.08234542 -2.34178646]
+Stochastic: data_big_nonsep: rate 5.0: iteration 10: errors: 0.185: time: 0.05698513984680176
+Stochastic: data_big_nonsep: rate 5.0: iteration 20: errors: 0.4385: time: 0.113128662109375
+Stochastic: data_big_nonsep: rate 5.0: iteration 50: errors: 0.1627: time: 0.1711869239807129
+Stochastic: data_big_nonsep: rate 5.0: iteration 100: errors: 0.1932: time: 0.23062968254089355
+Stochastic: data_big_nonsep: rate 5.0: iteration 200: errors: 0.1723: time: 0.29345035552978516
+Stochastic->weights: [-0.16448988  5.9300263  -1.33695548]
+Batch: data_big_separable: rate 5.0: iteration 10: errors: 0.0: time: 7.105329751968384
+Batch: data_big_separable: rate 5.0: iteration 20: errors: 0.0: time: 13.542338132858276
+Batch: data_big_separable: rate 5.0: iteration 50: errors: 0.0: time: 32.77558755874634
+Batch: data_big_separable: rate 5.0: iteration 100: errors: 0.0: time: 64.80244541168213
+Batch: data_big_separable: rate 5.0: iteration 200: errors: 0.0: time: 128.92695689201355
+Batch->weights: [-4.35863726  2.27886583  0.31793257]
+Stochastic: data_big_separable: rate 5.0: iteration 10: errors: 0.5: time: 0.06432151794433594
+Stochastic: data_big_separable: rate 5.0: iteration 20: errors: 0.4758: time: 0.12041091918945312
+Stochastic: data_big_separable: rate 5.0: iteration 50: errors: 0.0: time: 0.17807912826538086
+Stochastic: data_big_separable: rate 5.0: iteration 100: errors: 0.0: time: 0.23747920989990234
+Stochastic: data_big_separable: rate 5.0: iteration 200: errors: 0.0: time: 0.30033326148986816
+Stochastic->weights: [-5.09978222  1.45648657  0.85732119]
 -
 Start evaluating on datasets for 500 iterations with learning rate 5.0
 	data_small_separable
 		data_small_separable: Batch correctness: (200, 200)
 		data_small_separable: Stochastic correctness: (200, 200)
-	data_small_nonsep
-		data_small_nonsep: Batch correctness: (172, 200)
-		data_small_nonsep: Stochastic correctness: (166, 200)
 	data_big_separable
 		data_big_separable: Batch correctness: (1000, 1000)
 		data_big_separable: Stochastic correctness: (1000, 1000)
 	data_big_nonsep
 		data_big_nonsep: Batch correctness: (837, 1000)
-		data_big_nonsep: Stochastic correctness: (825, 1000)
+		data_big_nonsep: Stochastic correctness: (798, 1000)
+	data_small_nonsep
+		data_small_nonsep: Batch correctness: (172, 200)
+		data_small_nonsep: Stochastic correctness: (172, 200)
 -
 Start training on datasets for 500 iterations with learning rate 10.0
 -
-Batch: data_small_nonsep: rate 10.0: iteration 10: errors: 0.161
-Batch: data_small_nonsep: rate 10.0: iteration 20: errors: 0.161
-Batch: data_small_nonsep: rate 10.0: iteration 50: errors: 0.16
-Batch: data_small_nonsep: rate 10.0: iteration 100: errors: 0.16
-Batch: data_small_nonsep: rate 10.0: iteration 200: errors: 0.16
-BatchGradientDescent: elapsed time: 67.18643498420715 secs
-	->weights: [ 0.48263604  4.08671049 -2.29140089]
-Stochastic: data_small_nonsep: rate 10.0: iteration 10: errors: 0.215
-Stochastic: data_small_nonsep: rate 10.0: iteration 20: errors: 0.168
-Stochastic: data_small_nonsep: rate 10.0: iteration 50: errors: 0.2705
-Stochastic: data_small_nonsep: rate 10.0: iteration 100: errors: 0.247
-Stochastic: data_small_nonsep: rate 10.0: iteration 200: errors: 0.22
-StochasticGradientDescent: elapsed time: 0.10097622871398926 secs
-	->weights: [-2.2911169   9.88614507 -2.82465101]
-Batch: data_big_separable: rate 10.0: iteration 10: errors: 0.0055
-Batch: data_big_separable: rate 10.0: iteration 20: errors: 0.0023
-Batch: data_big_separable: rate 10.0: iteration 50: errors: 0.0004
-Batch: data_big_separable: rate 10.0: iteration 100: errors: 0.0001
-Batch: data_big_separable: rate 10.0: iteration 200: errors: 0.0
-BatchGradientDescent: elapsed time: 317.0540609359741 secs
-	->weights: [-4.71713685  3.87140462 -0.26631701]
-Stochastic: data_big_separable: rate 10.0: iteration 10: errors: 0.5
-Stochastic: data_big_separable: rate 10.0: iteration 20: errors: 0.5
-Stochastic: data_big_separable: rate 10.0: iteration 50: errors: 0.5
-Stochastic: data_big_separable: rate 10.0: iteration 100: errors: 0.5
-Stochastic: data_big_separable: rate 10.0: iteration 200: errors: 0.5
-StochasticGradientDescent: elapsed time: 0.3161430358886719 secs
-	->weights: [-2.8030318  -0.03245792 -2.04947319]
-Batch: data_small_separable: rate 10.0: iteration 10: errors: 0.005
-Batch: data_small_separable: rate 10.0: iteration 20: errors: 0.001
-Batch: data_small_separable: rate 10.0: iteration 50: errors: 0.0005
-Batch: data_small_separable: rate 10.0: iteration 100: errors: 0.0005
-Batch: data_small_separable: rate 10.0: iteration 200: errors: 0.0
-BatchGradientDescent: elapsed time: 61.81730651855469 secs
-	->weights: [-4.68939525  4.01223743 -0.33521513]
-Stochastic: data_small_separable: rate 10.0: iteration 10: errors: 0.0335
-Stochastic: data_small_separable: rate 10.0: iteration 20: errors: 0.0255
-Stochastic: data_small_separable: rate 10.0: iteration 50: errors: 0.0065
-Stochastic: data_small_separable: rate 10.0: iteration 100: errors: 0.003
-Stochastic: data_small_separable: rate 10.0: iteration 200: errors: 0.002
-StochasticGradientDescent: elapsed time: 0.09188604354858398 secs
-	->weights: [-5.7877603  12.29036998 -3.41249289]
-Batch: data_big_nonsep: rate 10.0: iteration 10: errors: 0.1626
-Batch: data_big_nonsep: rate 10.0: iteration 20: errors: 0.1601
-Batch: data_big_nonsep: rate 10.0: iteration 50: errors: 0.1593
-Batch: data_big_nonsep: rate 10.0: iteration 100: errors: 0.158
-Batch: data_big_nonsep: rate 10.0: iteration 200: errors: 0.1579
-BatchGradientDescent: elapsed time: 309.35843205451965 secs
-	->weights: [ 0.52535043  4.21712211 -2.43791453]
-Stochastic: data_big_nonsep: rate 10.0: iteration 10: errors: 0.3698
-Stochastic: data_big_nonsep: rate 10.0: iteration 20: errors: 0.279
-Stochastic: data_big_nonsep: rate 10.0: iteration 50: errors: 0.2205
-Stochastic: data_big_nonsep: rate 10.0: iteration 100: errors: 0.1599
-Stochastic: data_big_nonsep: rate 10.0: iteration 200: errors: 0.1635
-StochasticGradientDescent: elapsed time: 0.31820130348205566 secs
-	->weights: [ 0.17935157  7.51477007 -6.60986451]
+Batch: data_small_separable: rate 10.0: iteration 10: errors: 0.001: time: 1.4189321994781494
+Batch: data_small_separable: rate 10.0: iteration 20: errors: 0.0005: time: 2.7142796516418457
+Batch: data_small_separable: rate 10.0: iteration 50: errors: 0.0005: time: 6.590902090072632
+Batch: data_small_separable: rate 10.0: iteration 100: errors: 0.0: time: 13.014203786849976
+Batch: data_small_separable: rate 10.0: iteration 200: errors: 0.0: time: 25.856597900390625
+Batch->weights: [-4.70233338  3.59091057 -0.1538534 ]
+Stochastic: data_small_separable: rate 10.0: iteration 10: errors: 0.004: time: 0.01204228401184082
+Stochastic: data_small_separable: rate 10.0: iteration 20: errors: 0.0005: time: 0.023890256881713867
+Stochastic: data_small_separable: rate 10.0: iteration 50: errors: 0.003: time: 0.03727436065673828
+Stochastic: data_small_separable: rate 10.0: iteration 100: errors: 0.001: time: 0.052034616470336914
+Stochastic: data_small_separable: rate 10.0: iteration 200: errors: 0.0005: time: 0.07038998603820801
+Stochastic->weights: [-5.12782628 12.65455202 -3.75741393]
+Batch: data_small_nonsep: rate 10.0: iteration 10: errors: 0.1615: time: 1.4418866634368896
+Batch: data_small_nonsep: rate 10.0: iteration 20: errors: 0.1615: time: 2.7309091091156006
+Batch: data_small_nonsep: rate 10.0: iteration 50: errors: 0.1595: time: 6.584217548370361
+Batch: data_small_nonsep: rate 10.0: iteration 100: errors: 0.1605: time: 13.01454210281372
+Batch: data_small_nonsep: rate 10.0: iteration 200: errors: 0.16: time: 25.834678649902344
+Batch->weights: [ 0.48258839  4.08655336 -2.29129086]
+Stochastic: data_small_nonsep: rate 10.0: iteration 10: errors: 0.1805: time: 0.01208186149597168
+Stochastic: data_small_nonsep: rate 10.0: iteration 20: errors: 0.1655: time: 0.027456283569335938
+Stochastic: data_small_nonsep: rate 10.0: iteration 50: errors: 0.1945: time: 0.04436492919921875
+Stochastic: data_small_nonsep: rate 10.0: iteration 100: errors: 0.268: time: 0.05965471267700195
+Stochastic: data_small_nonsep: rate 10.0: iteration 200: errors: 0.236: time: 0.07820653915405273
+Stochastic->weights: [ 3.79180687 12.09406374 -8.7212719 ]
+Batch: data_big_nonsep: rate 10.0: iteration 10: errors: 0.162: time: 7.103100538253784
+Batch: data_big_nonsep: rate 10.0: iteration 20: errors: 0.1599: time: 13.555649280548096
+Batch: data_big_nonsep: rate 10.0: iteration 50: errors: 0.1592: time: 32.83523368835449
+Batch: data_big_nonsep: rate 10.0: iteration 100: errors: 0.158: time: 64.93669414520264
+Batch: data_big_nonsep: rate 10.0: iteration 200: errors: 0.1579: time: 129.07282280921936
+Batch->weights: [ 0.52536271  4.21716449 -2.43794428]
+Stochastic: data_big_nonsep: rate 10.0: iteration 10: errors: 0.2397: time: 0.056920766830444336
+Stochastic: data_big_nonsep: rate 10.0: iteration 20: errors: 0.3042: time: 0.11301255226135254
+Stochastic: data_big_nonsep: rate 10.0: iteration 50: errors: 0.2119: time: 0.17055749893188477
+Stochastic: data_big_nonsep: rate 10.0: iteration 100: errors: 0.2038: time: 0.22962689399719238
+Stochastic: data_big_nonsep: rate 10.0: iteration 200: errors: 0.2892: time: 0.29216456413269043
+Stochastic->weights: [-2.2559531   7.1731484  -2.68341119]
+Batch: data_big_separable: rate 10.0: iteration 10: errors: 0.0066: time: 7.116122722625732
+Batch: data_big_separable: rate 10.0: iteration 20: errors: 0.0027: time: 13.572301864624023
+Batch: data_big_separable: rate 10.0: iteration 50: errors: 0.0008: time: 32.866411209106445
+Batch: data_big_separable: rate 10.0: iteration 100: errors: 0.0001: time: 64.98544669151306
+Batch: data_big_separable: rate 10.0: iteration 200: errors: 0.0: time: 129.19541597366333
+Batch->weights: [-4.71981931  4.00232933 -0.32135585]
+Stochastic: data_big_separable: rate 10.0: iteration 10: errors: 0.5: time: 0.05682182312011719
+Stochastic: data_big_separable: rate 10.0: iteration 20: errors: 0.5: time: 0.11348652839660645
+Stochastic: data_big_separable: rate 10.0: iteration 50: errors: 0.5: time: 0.17189955711364746
+Stochastic: data_big_separable: rate 10.0: iteration 100: errors: 0.0003: time: 0.23186492919921875
+Stochastic: data_big_separable: rate 10.0: iteration 200: errors: 0.0: time: 0.2951338291168213
+Stochastic->weights: [-4.73994867  2.22996057  0.45793879]
 -
 Start evaluating on datasets for 500 iterations with learning rate 10.0
 	data_small_separable
 		data_small_separable: Batch correctness: (200, 200)
 		data_small_separable: Stochastic correctness: (199, 200)
-	data_small_nonsep
-		data_small_nonsep: Batch correctness: (172, 200)
-		data_small_nonsep: Stochastic correctness: (172, 200)
 	data_big_separable
 		data_big_separable: Batch correctness: (1000, 1000)
-		data_big_separable: Stochastic correctness: (500, 1000)
+		data_big_separable: Stochastic correctness: (1000, 1000)
 	data_big_nonsep
 		data_big_nonsep: Batch correctness: (836, 1000)
-		data_big_nonsep: Stochastic correctness: (779, 1000)
+		data_big_nonsep: Stochastic correctness: (816, 1000)
+	data_small_nonsep
+		data_small_nonsep: Batch correctness: (172, 200)
+		data_small_nonsep: Stochastic correctness: (170, 200)
