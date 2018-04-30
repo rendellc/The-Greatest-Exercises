@@ -11,7 +11,7 @@
 
 
 % Letternumbering
-\renewcommand{\thesection}{Part \Alph{section}} 
+\renewcommand{\thesection}{\Roman{section}} 
 
 \title{Artificial Intelligence Methods, exercise 4}
 \author{Rendell Cale}
@@ -71,7 +71,7 @@ After implementing the update rule in Python, starting the weights at $(w_1,w_2)
 \end{centering}
 
 Notice in the plot that there is quite a big difference between the different choices of $\eta$. With $\eta = 100$ the weights ended up quite far away from the others, but actually the difference in the loss function values of the resulting points isn't that big when we compare $\eta = 100$ to $\eta = 0.01$. 
-The function does decrease in the direction of $(w_1,w_2) = (\infty,-\infty)$, but is essentially constantly zero from quite early on. 
+The function does decrease in the direction of $(w_1,w_2) \rightarrow (\infty,-\infty)$, but is essentially constantly zero from quite early on. 
 
 Another interesting thing we can see from this plot is that for $\eta=0.0001$, the loss function is significantly larger. This is probably since the sequence converges slower for small values of $\eta$. 
 
@@ -97,7 +97,10 @@ Using this in \cref{eq:partial_L_halway} gives the final formula which we'll use
 
 \subsection{Experiments}
 \subsubsection{General results}
+After implementing the algorithms and experimenting a bit, it seems clear that both of them work but they behave differently when it comes to convergence and time requirements. The big advantage with Batch Gradient Descent (BGD) is that it takes into account all of the data when it computes the gradient. This makes for a more stable and correct algorithm but comes at the cost of time requirements, especially as the dataset gets large. 
+Stochastic Gradient Descent (SGD) is able to obtain almost the same error rate as BGD, but it achieves it alot faster in time. For instance when training in the small seperable dataset with a learning rate of 1.0, BGD was able to achieve a zero errors in less than 50 iterations taking 6.5 seconds , whereas SGD required more than 100 iterations taking 0.07 seconds. 
 
+The general trend is that the non-seperable datasets are harder to train on, since both BGD and SGD required more iterations to get low error scores there. It was also quite noticable with BGD that the size og the datasets directly affected the speed of the algorithm. There was also some effect of dataset size with SGD, but it wasn't nearly as significant, so I suspect it is more the result of implementation details rather than algorithmic time requirements. 
 
 \subsubsection{Scatter plot}
 I trained the perceptron on the big non-seperable dataset using Stochastic Gradient Descent. The following scatter plot shows the two classes of points and the line which attempts to divide them. 
@@ -123,7 +126,18 @@ The general effect that increasing the number of iterations is that the error go
 
 To see this we will plot the error as a function of the number of iterations for the small non-seperable dataset. 
 
+\begin{centering}
+\includegraphics[width=0.9\linewidth]{ex4_error_over_iterations_sgc.png}
+\end{centering}
 
+As we can see the error rate converges around 16\% and jumps a bit up and down between each iteration. These results were obtained using the Stochastic training method so it is reasonable that the errors spike from time to time. 
+I suspected that using Batch gradient descent would give more stable convergence. To test this a ran the same method on the same dataset for the same number of iterations. This gave a much more stable convergence.
+
+\begin{centering}
+\includegraphics[width=0.9\linewidth]{ex4_error_over_iterations_bgc.png}
+\end{centering}
+
+Of course the cost of this stability is that the training time went from 0.37 seconds with SGD to 137 seconds with BGD.
 
 
 \end{document}
