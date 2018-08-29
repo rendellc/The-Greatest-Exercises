@@ -1,0 +1,12 @@
+#version 430 core
+
+out vec4 color;
+
+void main()
+{
+    int c_x = (int(gl_FragColor.x) << 5) >> 4;
+    int c_y = (int(gl_FragColor.y) << 5) >> 4;
+    
+    
+    color = vec4(float(c_x+c_y),0,0,1.f);
+}
