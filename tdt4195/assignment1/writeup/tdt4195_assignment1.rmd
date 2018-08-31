@@ -18,7 +18,8 @@ the z-dimension.
 ### ii
 Clipping occours when we render something outside the clipping region.
 ### iii
-The purpose of clipping specifically in the z-direction, is 
+The purpose of clipping specifically in the z-direction, is to eliminate objects that are too
+far away, too close, or behind the camera. 
 
 ## b
 ### i
@@ -52,6 +53,10 @@ in the scene and emulate thing like camera placement.
 The *fragment shader* applies colors and textures to the rasterized image. 
 
 ### iv
+The vertex attributes can be used as inputs to the vertex shader, 
+specyfying how the vertices should be tranformed and interpreted. 
+The index buffer specify how the vertices should be connected together 
+and is independent of how the vertices are transformed.
 
 
 ### v
@@ -85,14 +90,11 @@ Relevant fragment shader code:
 ## b
 ![](https://raw.githubusercontent.com/rendellc/The-Greatest-Exercises/master/tdt4195/assignment1/writeup/changing_circle.png)
 
-
 ## c
 ![](https://raw.githubusercontent.com/rendellc/The-Greatest-Exercises/master/tdt4195/assignment1/writeup/spiral.png)
 
-
 ## d
 This is done for both b and c, but is a bit hard to demonstrate in a pdf.
-
 
 ## e
 ![](https://raw.githubusercontent.com/rendellc/The-Greatest-Exercises/master/tdt4195/assignment1/writeup/square_from_triangle.png)
