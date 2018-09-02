@@ -4,5 +4,15 @@ output: pdf
 ---
 
 ## Problem 4.2 simulink
-![]('https://raw.githubusercontent.com/rendellc/The-Greatest-Exercises/master/ttk4215/Assignment\ 1/writeup/five_triangles.png')
+### Overview
+![](https://raw.githubusercontent.com/rendellc/The-Greatest-Exercises/master/ttk4215/assignment1/AdaptRobCtrl_p_4_2_simulink.PNG)
+
+### Plant
+![](https://raw.githubusercontent.com/rendellc/The-Greatest-Exercises/master/ttk4215/assignment1/AdaptRobCtrl_p_4_2_plant.PNG)
+
+### Plant simulation
+![](https://raw.githubusercontent.com/rendellc/The-Greatest-Exercises/master/ttk4215/assignment1/AdaptRobCtrl_p_4_2_plant_sim.PNG)
+
+### Model apaption
+![](https://raw.githubusercontent.com/rendellc/The-Greatest-Exercises/master/ttk4215/assignment1/AdaptRobCtrl_p_4_2_model_adaption.PNG)
 
