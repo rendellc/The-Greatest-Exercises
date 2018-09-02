@@ -1,0 +1,8 @@
+---
+title: ""
+output: pdf
+---
+
+## Problem 4.2 simulink
+![]('https://raw.githubusercontent.com/rendellc/The-Greatest-Exercises/master/ttk4215/Assignment\ 1/writeup/five_triangles.png')
+
