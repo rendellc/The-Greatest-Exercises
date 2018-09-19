@@ -8,13 +8,15 @@
 #include <glad/glad.h>
 #include <string>
 
+#include "mycamera.hpp"
+
 
 // Main OpenGL program
 void runProgram(GLFWwindow* window);
 
 
 // Function for handling keypresses
-void handleKeyboardInput(GLFWwindow* window);
+void handleKeyboardInput(GLFWwindow* window, MyCamera* camera);
 
 
 // Checks for whether an OpenGL error occurred. If one did,
