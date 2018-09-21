@@ -89,4 +89,39 @@ changes color.
 
 
 # Task 3
+$$
+\begin{bmatrix}
+	a & b & 0 & c \\
+	d & e & 0 & f \\
+	0 & 0 & 1 & 0 \\
+	0 & 0 & 0 & 1
+\end{bmatrix}
+$$
+
+Parameter | Effect 
+----------|:------
+a | Scale along x-axis
+b | Shear along x-axis (shifts vertices on x linearly with y)
+c | Translation in x
+d | Shear along y-axis (shifts vertices on y linearly with x)
+e | Scale along y-axis
+f | Translation in y
+
+
+# Task 4
+
+Keybindings for camera movement.
+
+After compiling, this is the program that should start. 
+
+Key | Effect
+---|:---
+w/s | up/down (y-axis)
+a/d | right/left (x-axis)
+e/q | zoom (z-axis)
+l/h | yaw
+j/k | pitch
+
+I believe I have a bug with the camera rotation, because the rotations don't
+seem to be centered on the camera, but rather in front of the camera. 
 
