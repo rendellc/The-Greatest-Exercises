@@ -29,9 +29,9 @@ void runProgram(GLFWwindow* window)
     srand(static_cast<unsigned>(time(0)));
     
     // Enable depth (Z) buffer (accept "closest" fragment)
-    glEnable(GL_DEPTH_TEST);
+    //glEnable(GL_DEPTH_TEST);
     glEnable(GL_DEBUG_OUTPUT);
-    glDepthFunc(GL_LESS);
+    //glDepthFunc(GL_LESS);
 
     // Configure miscellaneous OpenGL settings
     //GL_CALL(glEnable(GL_CULL_FACE));
@@ -44,15 +44,16 @@ void runProgram(GLFWwindow* window)
     // Get info about window
     int screen_w, screen_h;
     glfwGetWindowSize(window, &screen_w, &screen_h);
+    glfwSetWindowTitle(window, "r: 0.0, g: 0.0, b:0.0, draw order: b->g->r");
 
     
     // Set up your scene here (create Vertex Array Objects, etc.)
-    VertexBuffer vertices = Task4bVertices();
-    auto indices = Task4bIndices();
+    VertexBuffer vertices = Task2Vertices();
+    auto indices = Task2Indices();
     const auto VAO = SetupVAO(vertices, indices.data(), indices.size());
     
     Gloom::Shader shaders;
-    shaders.makeBasicShader("../gloom/shaders/task4.vert", "../gloom/shaders/simple.frag");
+    shaders.makeBasicShader("../gloom/shaders/simple.vert", "../gloom/shaders/simple.frag");
     GL_CALL(glUseProgram(shaders.get()));
     
     // uniform related
@@ -89,7 +90,7 @@ void runProgram(GLFWwindow* window)
         auto t = u_Transform * testing;
         std::cout << t.x/t.w << " " << t.y/t.w << " " << t.z/t.w << " " << t.w/t.w << std::endl;
         
-        GL_CALL(glUniformMatrix4fv(2, 1, false, glm::value_ptr(u_Transform)));
+        //GL_CALL(glUniformMatrix4fv(2, 1, false, glm::value_ptr(u_Transform)));
 
         // Draw your scene here
         GL_CALL(glBindVertexArray(VAO));
