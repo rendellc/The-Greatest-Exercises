@@ -43,7 +43,7 @@ std::array<unsigned int, 30> indexBuffer = {
 
 # Task 2
 ## a
-The picture is drawn (figure \ref{task2i}) with a red green and blue triangle. The alpha channel is `a=0.3` on all triangles. 
+The picture is drawn with a red green and blue triangle. The alpha channel is `a=0.3` on all triangles. 
 The red is drawn at `z=0.5`, green at `z=0`, and blue at `z=-0.5`. 
 The order draw order is front to back, meaning blue then green then red. 
 
@@ -52,7 +52,9 @@ The order draw order is front to back, meaning blue then green then red.
 
 ## b
 ### i
-Draw order is red green blue, 
+
+\includegraphics[width=0.5\textwidth]{Task2_i_first.png}
+\includegraphics[width=0.5\textwidth]{Task2_i_exchanged.png}
 
 - Effect on blended color:
 
@@ -64,9 +66,6 @@ Draw order is red green blue,
 	Therefore the further back in the draw chain something is, the more
 	layers will be mixed in on top, and thus the less impact it will have
 	on the resulting mix. 
-
-\includegraphics[width=0.5\textwidth]{Task2_i_first.png}
-\includegraphics[width=0.5\textwidth]{Task2_i_exchanged.png}
 
 ### ii
 
