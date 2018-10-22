@@ -28,6 +28,14 @@ alphaIntegral = 1;
 betaIntegral = 0.1;
 GammaIntegral = diag([300.0 50.0 10.0]);
 
+%% Least Squares
+alphaLeastSquares = 1;
+rho0 = 100;
+rho1 = 10;
+P0 = rho0*eye(3);
+betaLeast = 1;
+R0 = 1;
+
 
 
 

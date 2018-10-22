@@ -1,0 +1,149 @@
+---
+title: "Assignment 5, ttk4215"
+author: "Rendell Cale"
+date: '13th October'
+output: 
+  pdf_document:
+    fig_caption: yes
+header-includes:
+- \usepackage{caption}
+- \usepackage{graphicx}
+- \usepackage{float}
+---
+
+
+# Problem 4.9
+Using the same setup as in Assignment 4, which was
+$$
+  \theta =
+  \begin{bmatrix} 
+    m \\ \beta \\ k
+  \end{bmatrix}
+$$
+
+$$
+  \phi = 
+  \frac{
+  \begin{bmatrix} 
+    s^2 \\ s \\ s
+  \end{bmatrix}
+}{s^2 + \lambda_1 s + \lambda_2 } y
+$$
+
+$$
+    z = \frac{u}{s^2 + \lambda_1 s + \lambda_2 }
+$$
+
+For both d and e, I tried all three least square algorithms. I didn't change the design parameters
+much between each version this might not be a fair comparison. For all the given plots, I've used
+$\alpha = 1$, $\beta = 1$ (forgetting factor), $\rho_0 = 100$, $\rho_1 = 10$, $P_0 = \rho_0 I$, and $R_0 = 1$.
+
+
+## d 
+With constant $\theta^* = 
+  \begin{bmatrix} 
+    20 \\ 0.1 \\ 5
+  \end{bmatrix}$, we get the following plots.
+
+
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{problem4_9c_d_pure.png}
+  \caption{Problem 4.9 d: Pure Least-squares}
+\end{figure}
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{problem4_9c_d_covariance_resetting.png}
+  \caption{Problem 4.9 d: Least-squares with covariance resetting}
+\end{figure}
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{problem4_9c_d_forgetting.png}
+  \caption{Problem 4.9 d: Least-squares with forgetting}
+\end{figure}
+
+
+
+
+## e
+With $\theta^*$ time varying as given in the text, we get the following plots. 
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{problem4_9c_e_pure.png}
+  \caption{Problem 4.9 e: Pure Least-squares}
+\end{figure}
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{problem4_9c_e_covariance_resetting.png}
+  \caption{Problem 4.9 e: Least-squares with covariance resetting}
+\end{figure}
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{problem4_9c_e_forgetting.png}
+  \caption{Problem 4.9 e: Least-squares with forgetting}
+\end{figure}
+
+
+
+
+
+# Problem 4.10
+
+## a
+Spring is stretched out a distance $d = y_1 - y_2$. Hooks law gives that the force from the spring 
+is $F_k = k d = k (y_1 - y_2)$. Damping is proportional to speed of mass $F_d = \beta \dot{y_2}$.
+Newtons law then gives
+$$
+  m \ddot{y_2} = - F_d + F_k = - \beta \dot{y_2} + k (y_1 - y_2),
+$$
+which is equivalent to
+$$
+  k (y_1 - y_2) = m \ddot{y_2} + \beta \dot{y_2}.
+$$
+
+$u$ applies a force to the spring, and balancing that force with the spring force we get
+$$
+  F_k = u \Leftrightarrow k (y_1 - y_2) = u.
+$$
+
+
+## b
+Writing the equations in Laplace form.
+$$
+  s^2 m y_2 + s \beta y_2 = u
+$$
+$$
+  k (y_1 - y_2)  = u 
+$$
+
+We want to estimate $\theta^* = \begin{bmatrix} m \\ \beta \\ k \end{bmatrix}$. By writing 
+$$
+  \phi = \frac{\begin{bmatrix}
+    s^2 y_2 \\
+    s y_2 \\
+    y_1 - y_2
+  \end{bmatrix}}{\Lambda(s)}
+$$
+where $\Lambda(s)$ is Hurwitz, we get 
+$$
+  z = \theta^{*^T} \phi = \frac{s^2 m y_2 + s \beta y_2}{\Lambda(s)} + \frac{k (y_1 - y_2)}{\Lambda(s)} = \frac{u}{\Lambda(s)} + \frac{u}{\Lambda(s)} = \frac{2u}{\Lambda(s)}
+$$
+
+
+So using $z$, $\phi$, and $\theta$ as above, we have written the system in linear parametric form. 
+
+
+Now we can apply any of the standard on-line estimators, for instance SPR-Lyapunov design with $W(s) = 1$. 
+
+Estimation model: $\hat{z} = \theta^T \phi$
+
+Normalized estimation error: $\epsilon = \frac{z - \hat{z}}{m^2}$
+
+Adaptive law: $\dot{\theta} = \Gamma \epsilon \phi$
+
+Design parameters: $m^2 = 1 + n_s^2$ such that $\frac{\phi}{m} \in \mathcal{L}_\infty$, 
+$\Lambda(s) = s^2 + \lambda_1 s + \lambda_2$ with $\lambda_1, \lambda_2 > 0$.
+
+
+
+
+
+
+
+
