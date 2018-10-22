@@ -1,0 +1,157 @@
+// Local headers
+#include "program.hpp"
+#include "mycamera.hpp"
+#include "OBJLoader.hpp" 
+#include "floats.hpp" 
+#include "gloom/gloom.hpp"
+#include "gloom/shader.hpp"
+
+#include "glm/glm.hpp"
+#include "glm/gtc/type_ptr.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/mat4x4.hpp"
+#include "glm/gtx/transform.hpp"
+#include "glm/gtx/euler_angles.hpp"
+
+
+#define GL_CALL(statement) {\
+    statement;\
+    printGLError();\
+}
+
+
+unsigned int SetupVAO(float4* points, size_t n_points, unsigned int* indices, size_t n_indices) {
+    unsigned int vaoID; 
+    GL_CALL(glGenVertexArrays(1, &vaoID));
+    GL_CALL(glBindVertexArray(vaoID));
+    
+    unsigned int bufferID; 
+    GL_CALL(glGenBuffers(1, &bufferID));
+    GL_CALL(glBindBuffer(GL_ARRAY_BUFFER, bufferID));
+    GL_CALL(glBufferData(GL_ARRAY_BUFFER, 4*n_points*sizeof(*points), points, GL_STATIC_DRAW));
+    GL_CALL(glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, (void*)0));
+    GL_CALL(glEnableVertexAttribArray(0));
+    
+    unsigned int indexID;
+    GL_CALL(glGenBuffers(1, &indexID));
+    GL_CALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexID));
+    GL_CALL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, n_indices*sizeof(*indices), indices, GL_STATIC_DRAW));
+    
+    return vaoID;
+}
+
+unsigned int SetupVAO(Mesh& mesh) {
+    return SetupVAO(
+        &mesh.vertices.front(), mesh.vertices.size(),
+        &mesh.indices.front(), mesh.indices.size());
+}
+
+
+
+void runProgram(GLFWwindow* window)
+{
+    // Enable depth (Z) buffer (accept "closest" fragment)
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
+
+    // Configure miscellaneous OpenGL settings
+    glEnable(GL_CULL_FACE);
+
+    // Set default colour after clearing the colour buffer
+    glClearColor(0.3f, 0.5f, 0.8f, 1.0f);
+
+
+    // Set up shader
+    Gloom::Shader shaders;
+    shaders.makeBasicShader("../gloom/shaders/simple.vert", "../gloom/shaders/simple.frag");
+    GL_CALL(glUseProgram(shaders.get()));
+
+    // Set up your scene here (create Vertex Array Objects, etc.)
+    MyCamera camera;
+    camera.setX(4.f);
+
+    MinecraftCharacter character = loadMinecraftCharacterModel("../gloom/res/steve.obj");
+    const auto leftLeg = SetupVAO(character.leftLeg);
+    const auto rightLeg = SetupVAO(character.rightLeg);
+    const auto leftArm = SetupVAO(character.leftArm);
+    const auto rightArm = SetupVAO(character.rightArm);
+    const auto torso = SetupVAO(character.torso);
+    const auto head = SetupVAO(character.head);
+
+    // Rendering Loop
+    while (!glfwWindowShouldClose(window))
+    {
+        // Clear colour and depth buffers
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        // Move camera
+        glm::mat4x4 u_Transform = glm::perspective(glm::radians(120.f), 4.f/3.f, 0.1f, 50.f) * glm::lookAt(glm::vec3(camera.x, camera.y, camera.z), glm::vec3(0, 0, 0), glm::vec3(0,1,0));
+        GL_CALL(glUniformMatrix4fv(0, 1, false, glm::value_ptr(u_Transform)));
+
+        // Draw your scene here
+        GL_CALL(glBindVertexArray(leftLeg)); GL_CALL(glDrawElements(GL_TRIANGLES, character.leftLeg.indices.size(), GL_UNSIGNED_INT, (void*)0));
+        GL_CALL(glBindVertexArray(rightLeg)); GL_CALL(glDrawElements(GL_TRIANGLES, character.rightLeg.indices.size(), GL_UNSIGNED_INT, (void*)0));
+        GL_CALL(glBindVertexArray(leftArm)); GL_CALL(glDrawElements(GL_TRIANGLES, character.leftArm.indices.size(), GL_UNSIGNED_INT, (void*)0));
+        GL_CALL(glBindVertexArray(rightArm)); GL_CALL(glDrawElements(GL_TRIANGLES, character.rightArm.indices.size(), GL_UNSIGNED_INT, (void*)0));
+        GL_CALL(glBindVertexArray(torso)); GL_CALL(glDrawElements(GL_TRIANGLES, character.torso.indices.size(), GL_UNSIGNED_INT, (void*)0));
+        GL_CALL(glBindVertexArray(head)); GL_CALL(glDrawElements(GL_TRIANGLES, character.head.indices.size(), GL_UNSIGNED_INT, (void*)0));
+
+        // Handle other events
+        glfwPollEvents();
+        handleKeyboardInput(window, &camera);
+
+        // Flip buffers
+        glfwSwapBuffers(window);
+    }
+}
+
+
+void handleKeyboardInput(GLFWwindow* window, MyCamera* camera)
+{
+    // Use escape key for terminating the GLFW window
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    {
+        glfwSetWindowShouldClose(window, GL_TRUE);
+    }
+    else if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
+    {
+        camera->moveZ(-0.1);
+    }
+    if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
+    {
+        camera->moveZ(0.1);
+    }
+    else if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+    {
+        camera->moveX(-0.1);
+    }
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+    {
+        camera->moveX(0.1);
+    }
+    else if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+    {
+        camera->moveY(0.1);
+    }
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+    {
+        camera->moveY(-0.1);
+    }
+    else if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
+    {
+        camera->changePitch(-0.01);
+    }
+    if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS)
+    {
+        camera->changePitch(0.01);
+    }
+    else if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
+    {
+        camera->changeYaw(-0.01);
+    }
+    if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
+    {
+        camera->changeYaw(0.01);
+    }
+
+}

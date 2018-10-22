@@ -218,3 +218,11 @@ TSWLatexianTemp*
 
 # expex forward references with \gathertags
 *-tags.tex
+
+# Simulink junk
+*/slprj/
+
+# Python
+*.pyc
+
+
