@@ -22,8 +22,6 @@ class LinearStateSpace(SimBase):
         self.D = np.array(D, dtype=np.float)
         self.x0 = np.array(x0, dtype=np.float)
 
-        print(self.A.dot(self.x0))
-
         def update_law(t, y, u):
             """
             x_dot = A x + B u
@@ -38,6 +36,27 @@ class LinearStateSpace(SimBase):
         """
         x = SimBase.get_states(self)
         return self.C.dot(x) + self.D.dot(u)
+
+
+class MassSpringDamperParallel(LinearStateSpace):
+    def __init__(self, m, d, k, pos0=0, vel0=0, t0=0):
+        A = np.array([[0, 1], [-k/m, -d/m]], dtype=np.float)
+        B = np.array([[0],[1]], dtype=np.float)
+        C = np.eye(2, dtype=np.float)
+        D = np.zeros([2,1], dtype=np.float)
+
+        print(A)
+        print(B)
+        print(C)
+        print(D)
+
+        x0 = np.array([pos0,vel0], dtype=np.float).transpose()
+        LinearStateSpace.__init__(self, A,B,C,D, x0, t0)
+
+    def measure(self, u):
+        y = LinearStateSpace.get_states(self)
+        return y[0]
+
 
 
 class MassSpringDamperSeries(SimBase):

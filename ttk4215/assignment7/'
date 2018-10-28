@@ -1,0 +1,22 @@
+from scipy import signal
+from scipy.integrate import RK45
+import numpy as np
+
+
+
+lambda1, lambda2 = -2, -4
+Lambda = signal.TransferFunction([1, -(lambda1+lambda2), lambda1*lambda2], [1])
+
+A_phi1 = np.array([[-lambda1-lambda2, lambda1*lambda2], [1,0]], dtype=np.float)
+
+A_phi = np.kron(A_phi, np.eye(2))
+
+print(A_phi)
+
+def func(t,y):
+    '''
+    y = [theta1, theta2, rho, x_phi]
+    '''
+    return -y;
+
+solver = RK45(func, 0, [1000], 100)

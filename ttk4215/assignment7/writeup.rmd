@@ -1,0 +1,80 @@
+---
+title: "Assignment 7, ttk4215"
+author: "Rendell Cale"
+date: '27st October'
+output: 
+  pdf_document:
+    fig_caption: yes
+header-includes:
+- \usepackage{caption}
+- \usepackage{graphicx}
+- \usepackage{float}
+- \usepackage{cleveref}
+- \usepackage{amsmath}
+---
+
+
+# Problem 4.13
+
+First we rewrite the system to the bilinear form based on signals u and y. 
+\begin{gather}
+  y = \rho^*\left(u - m \ddot{y} - \beta \dot{y} \right) \\
+  \frac{y}{\Lambda(s)} = \rho^*\left( -m \frac{s^2 y}{\Lambda(s)} - \beta \frac{s y}{\Lambda(s)} + \frac{u}{\Lambda(s)} \right)  \\
+  z = \rho^*\left( \theta^{*^T}\phi + z_1 \right)
+\end{gather}
+
+So we have a bilinear parametric model with
+\begin{gather}
+  \theta^* = \begin{bmatrix} m & \beta \end{bmatrix}^T \\
+  \rho^* = 1/k \\
+  \phi = \begin{bmatrix} \frac{-s^2 y}{\Lambda(s)} & \frac{-s y}{\Lambda(s)} \end{bmatrix}^T \\
+  z_1 = \frac{u}{\Lambda(s)} \\
+  z = \frac{y}{\Lambda(s)} \\
+  \Lambda(s) = (s - \lambda_1)(s - \lambda_2) \\
+  \lambda_1, \lambda_2 < 0
+\end{gather}
+
+We know that $\rho^* > 0$, but we don't have a non-zero lower bound. Will use gradient algorithm for bilinear parametrizations to estimate. 
+
+\begin{gather}
+  \hat{z} = \rho\left( \theta^T\phi + z_1 \right) = \rho \xi \\
+  \epsilon =  \frac{z - \hat{z}}{m^2} \\
+  m^2 = 1 + n_s^2 = 1 + \alpha (\phi^T\phi + z_1^2) \\
+  \xi = \theta^T\phi + z_1 \\
+  \dot{\theta} = \Gamma \epsilon \phi \text{sgn} (\rho^*) \\
+  \dot{\rho} = \gamma \epsilon \xi
+\end{gather}
+
+
+We first simulate with $m = 20$, $\beta = 0.1$, and $k = 5$, 
+which means $\rho^* = 0.2$, $\theta^* = \begin{bmatrix}20 & 0.1 \end{bmatrix}^T$.
+
+As input we use $u(t) = \sin(0.1t) + \sin(5t) + 20$. 
+
+\begin{centering}
+  \includegraphics[width=1.5\textwidth]{constant_params.png}
+\end{centering}
+
+The estimates do converge on the actual value, but it does take some time. 
+Interestingly both $m$ and $\beta$ go into the negative numbers. From a physical standpoint this
+doesn't make sense so we could probably improve the simulation with a projection to remove this. 
+
+
+
+I wasn't able to get good convergence in less than 20 seconds, so adding time varying mass might 
+not be that meaningful, but here we go. 
+
+\begin{centering}
+  \includegraphics[width=1.5\textwidth]{changing_params.png}
+\end{centering}
+
+It looks like $\beta$ and $\rho$ needs more time to converge now with the changing mass. Actually the
+estimate for $\beta$ is quite bad since it is negative, but the estimate for $\rho$ is close to the 
+actual value. The mass estimate isn't able to track the actual mass closely, but they follow a 
+similar curve, and the estimate seems to improve over time. 
+Again we have the problem that $m$ and $\beta$ estimates are negative, which we could account for 
+by using a projection. 
+
+
+
+
