@@ -220,7 +220,7 @@ TSWLatexianTemp*
 *-tags.tex
 
 # Simulink junk
-*/slprj/
+*/slprj
 
 # Python
 *.pyc
